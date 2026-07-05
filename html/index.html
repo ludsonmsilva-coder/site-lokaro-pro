@@ -1,0 +1,479 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lokaro — Run your coworking space and rentals without the chaos</title>
+<meta name="description" content="Lokaro manages members, bookings, rental leases and billing for coworking spaces and small landlords. Start free.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+</head>
+<body>
+<div class="scrollbar-top" id="scrollbar"></div>
+<div class="glow g1"></div><div class="glow g2"></div><div class="grid-bg"></div>
+
+<nav>
+  <a class="brand" href="#top">
+    <img class="logo" alt="Lokaro" src="../assets/images/logo.svg">
+    <span>Lokaro</span>
+  </a>
+  <div class="nav-links">
+    <a href="#features">Features</a>
+    <a href="#how">How it works</a>
+    <a href="#demo">Demo</a>
+    <a href="#inside">App</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#waitlist" class="nav-cta">Start free</a>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div>
+    <p class="eyebrow">Coworking &amp; rentals, one app</p>
+    <h1>Run your space without <span class="gword">the chaos</span></h1>
+    <p class="sub">Members, bookings, rental leases and billing — managed in one place, with automatic invoices and email reminders your tenants actually receive.</p>
+    <div class="cta-row">
+      <a class="btn primary" href="#pricing">Start free — 2 units</a>
+      <a class="btn ghost" href="#features">See how it works</a>
+    </div>
+    <p class="hero-note">No credit card required · Set up in 5 minutes</p>
+  </div>
+
+  <div class="mock" aria-hidden="true">
+    <div class="phone phone-app" style="margin:0 auto">
+      <div class="pscreen">
+        <div class="pviews">
+          <div class="pview on" data-view="dashboard">
+            <p class="pgreet">Good morning 👋</p>
+            <p class="ptitle">Sunset Hub</p>
+            <div class="pkpis">
+              <div class="pkpi spot"><div class="pi" style="background:rgba(37,99,235,.2);color:#60A5FA">👥</div><b>24</b><span>Active members</span></div>
+              <div class="pkpi spot"><div class="pi" style="background:rgba(45,212,191,.16);color:#2DD4BF">📅</div><b>12</b><span>Bookings today</span></div>
+              <div class="pkpi spot"><div class="pi" style="background:rgba(139,92,246,.18);color:#A78BFA">🚪</div><b>8</b><span>Active units</span></div>
+              <div class="pkpi spot"><div class="pi" style="background:rgba(248,113,113,.14);color:#F87171">⚠️</div><b>3</b><span>Pending invoices</span></div>
+            </div>
+            <div class="prow"><div class="pbar" style="background:#2DD4BF"></div><div><b>Meeting Room A</b><small>09:00–11:00 · Sarah M.</small></div></div>
+            <div class="prow"><div class="pbar" style="background:#3B82F6"></div><div><b>Studio 04 · Rent</b><small>July</small></div><span class="pbadge g">Paid</span></div>
+            <div class="pcardinfo"><b>Next steps</b><p>Invite your first members and let billing run on autopilot.</p></div>
+          </div>
+
+          <div class="pview" data-view="members">
+            <p class="ptitle">Members</p>
+            <div class="psearch">🔍 Search by name or email</div>
+            <div class="pchips"><span class="pchip on">All</span><span class="pchip">Active</span><span class="pchip">Trial</span><span class="pchip">Overdue</span></div>
+            <div class="prow"><div class="pav">JO</div><div><b>João Silva</b><small>joao@gmail.com</small></div><span class="pbadge g">Active</span></div>
+            <div class="prow"><div class="pav">SM</div><div><b>Sarah Miller</b><small>sarah@studio.co</small></div><span class="pbadge b">Trial</span></div>
+            <div class="prow"><div class="pav">DR</div><div><b>Diego Ramos</b><small>diego@dev.io</small></div><span class="pbadge r">Overdue</span></div>
+          </div>
+
+          <div class="pview" data-view="bookings">
+            <p class="ptitle">Bookings</p>
+            <div class="pseg"><span class="on">Schedule</span><span>Rooms</span><span>Leases</span></div>
+            <div class="pcal">
+              <p class="pmon">July 2026</p>
+              <div class="pdays">
+                <span class="pd hd">S</span><span class="pd hd">M</span><span class="pd hd">T</span><span class="pd hd">W</span><span class="pd hd">T</span><span class="pd hd">F</span><span class="pd hd">S</span>
+                <span class="pd"></span><span class="pd"></span><span class="pd"></span><span class="pd dot">1</span><span class="pd">2</span><span class="pd">3</span><span class="pd sel">4</span>
+                <span class="pd">5</span><span class="pd">6</span><span class="pd dot">7</span><span class="pd">8</span><span class="pd">9</span><span class="pd dot">10</span><span class="pd">11</span>
+              </div>
+            </div>
+            <div class="prow"><div class="pbar" style="background:#2DD4BF"></div><div><b>08:30 – 10:00</b><small>Meeting Room A · João</small></div></div>
+            <div class="prow"><div class="pbar" style="background:#8B5CF6"></div><div><b>14:00 – 18:00</b><small>Hot Desk 12 · Sarah</small></div></div>
+          </div>
+
+          <div class="pview fin" data-view="finance">
+            <p class="ptitle">Finance</p>
+            <div class="prev">
+              <p class="rl">Received this month</p>
+              <p class="rv" style="color:#2DD4BF">$4,320</p>
+              <div class="pbars"><i style="height:30%"></i><i style="height:45%"></i><i style="height:38%"></i><i style="height:62%"></i><i style="height:55%"></i><i class="hi" style="height:92%"></i></div>
+            </div>
+            <div class="prow"><div class="pbar" style="background:#3B82F6"></div><div><b>Rent — Studio 04 — 07/2026</b><small>Due 07/10 · João</small></div><span class="pbadge g">Paid</span></div>
+            <div class="prow"><div class="pbar" style="background:#2DD4BF"></div><div><b>Rent — House 134 — 07/2026</b><small>Due 07/04 · Maria</small></div><span class="pbadge b">Pending</span></div>
+          </div>
+
+          <div class="pview" data-view="settings">
+            <p class="ptitle">Settings</p>
+            <div class="pkpi"><div class="pi" style="background:rgba(37,99,235,.2);color:#60A5FA">🌐</div><b>Language</b><span>English / Português</span></div>
+            <div class="pkpi" style="margin-top:8px"><div class="pi" style="background:rgba(45,212,191,.16);color:#2DD4BF">🔔</div><b>Reminders</b><span>Email notifications: On</span></div>
+            <div class="pkpi" style="margin-top:8px"><div class="pi" style="background:rgba(248,113,113,.14);color:#F87171">🔒</div><b>Security</b><span>2FA recommended</span></div>
+            <div class="pcardinfo" style="margin-top:10px"><b>Plan</b><p>Starter · 10 units · Next billing on Jul 20</p></div>
+          </div>
+        </div>
+
+        <div class="ptabs">
+          <button class="ptab ptab-btn on" data-target="dashboard" type="button"><i></i>Dashboard</button>
+          <button class="ptab ptab-btn" data-target="members" type="button"><i></i>Members</button>
+          <button class="ptab ptab-btn" data-target="bookings" type="button"><i></i>Bookings</button>
+          <button class="ptab ptab-btn" data-target="finance" type="button"><i></i>Finance</button>
+          <button class="ptab ptab-btn" data-target="settings" type="button"><i></i>Settings</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  </header>
+
+<section id="features">
+  <div class="sec-head reveal">
+    <p class="eyebrow" style="justify-content:center">Everything included</p>
+    <h2>One tool for rooms, desks, houses and studios</h2>
+    <p>Built for small operators and landlords who are done juggling spreadsheets, calendars and WhatsApp.</p>
+  </div>
+  <div class="features">
+    <div class="feat reveal spot"><div class="ico">📅</div><h3>Smart bookings</h3><p>Hourly bookings with conflict protection, per-room business hours (even overnight and 24/7), and one-tap cancellation.</p></div>
+    <div class="feat reveal spot"><div class="ico">🏠</div><h3>Rental leases</h3><p>Link a tenant to a house, studio or apartment. Rent invoices are generated automatically every month — no forgetting, ever.</p></div>
+    <div class="feat reveal spot"><div class="ico">💸</div><h3>Billing that runs itself</h3><p>Automatic invoices, revenue by day, week and month, and overdue tracking that keeps your cash flow visible.</p></div>
+    <div class="feat reveal spot"><div class="ico">✉️</div><h3>Reminders people get</h3><p>Booking reminders and "rent due soon" emails, sent automatically at the right time — tenants stop being surprised.</p></div>
+    <div class="feat reveal spot"><div class="ico">👥</div><h3>Members &amp; tenants</h3><p>Profiles, statuses (active, trial, overdue) and safe deletion rules that never let money disappear silently.</p></div>
+    <div class="feat reveal spot"><div class="ico">🌎</div><h3>Bilingual &amp; mobile</h3><p>English and Portuguese, light and dark mode, built as a real mobile app for Android and iOS.</p></div>
+  </div>
+</section>
+
+
+<section id="how">
+  <div class="sec-head reveal">
+    <p class="eyebrow" style="justify-content:center">How it works</p>
+    <h2>From zero to organized in 4 steps</h2>
+    <p>No manuals, no consultants. If you can use WhatsApp, you can run Lokaro.</p>
+  </div>
+  <div class="steps">
+    <div class="step reveal spot">
+      <h3>Create your space</h3>
+      <p>Sign up, name your workspace, pick your time zone and currency. That is the whole setup.</p>
+      <span class="stime">~2 minutes</span>
+    </div>
+    <div class="step reveal spot">
+      <h3>Add your units</h3>
+      <p>Meeting rooms, hot desks, houses, studios — each with its own hours, capacity, price and color.</p>
+      <span class="stime">~1 minute each</span>
+    </div>
+    <div class="step reveal spot">
+      <h3>Add members &amp; tenants</h3>
+      <p>Register people once. Book rooms by the hour, or link a tenant to a rental with a monthly value and due day.</p>
+      <span class="stime">~1 minute each</span>
+    </div>
+    <div class="step reveal spot">
+      <h3>Let it run</h3>
+      <p>Invoices are generated automatically, reminders go out by email, and your revenue dashboard updates itself.</p>
+      <span class="stime">0 minutes — it is automatic</span>
+    </div>
+  </div>
+</section>
+
+
+<section id="demo">
+  <div class="sec-head reveal">
+    <p class="eyebrow" style="justify-content:center">Live demo</p>
+    <h2>Watch Lokaro do the work</h2>
+    <p>A real day in the app — playing on a loop, no sound needed.</p>
+  </div>
+    <div class="demo-wrap reveal">
+    <div>
+      <div class="demo-steps">
+        <div class="dstep spot" data-step="0">
+          <span class="dn">01</span>
+          <div><h3>A booking comes in</h3><p>Meeting Room A, 08:30–10:00. Conflict check runs instantly — the slot is free, so it's confirmed.</p></div>
+        </div>
+        <div class="dstep spot" data-step="1">
+          <span class="dn">02</span>
+          <div><h3>Rent invoices itself</h3><p>Studio 04's lease is due on the 10th. Lokaro generated July's invoice a week early — nobody typed anything.</p></div>
+        </div>
+        <div class="dstep spot" data-step="2">
+          <span class="dn">03</span>
+          <div><h3>Money gets tracked</h3><p>The tenant pays, the badge flips to Paid, and your monthly revenue updates in real time.</p></div>
+        </div>
+      </div>
+      <div class="demo-progress"><i></i><i></i><i></i></div>
+    </div>
+
+    <div class="phone demo-phone">
+      <div class="pscreen">
+
+        <!-- Cena 1: reserva chegando -->
+        <div class="scene" data-scene="0">
+          <p class="ptitle">Bookings</p>
+          <div class="pseg"><span class="on">Schedule</span><span>Rooms</span><span>Leases</span></div>
+          <div class="pcal">
+            <p class="pmon">July 2026</p>
+            <div class="pdays">
+              <span class="pd hd">S</span><span class="pd hd">M</span><span class="pd hd">T</span><span class="pd hd">W</span><span class="pd hd">T</span><span class="pd hd">F</span><span class="pd hd">S</span>
+              <span class="pd"></span><span class="pd"></span><span class="pd"></span><span class="pd">1</span><span class="pd">2</span><span class="pd">3</span><span class="pd sel">4</span>
+              <span class="pd">5</span><span class="pd">6</span><span class="pd dot">7</span><span class="pd">8</span><span class="pd">9</span><span class="pd dot">10</span><span class="pd">11</span>
+            </div>
+          </div>
+          <div class="prow rowin"><div class="pbar" style="background:#2DD4BF"></div><div><b>08:30 – 10:00</b><small>Meeting Room A · João</small></div><span class="pbadge g">Confirmed</span></div>
+          <span class="tap" style="bottom:118px;right:26px"></span>
+          <div class="ptabs">
+            <span class="ptab"><i></i>Dashboard</span>
+            <span class="ptab"><i></i>Members</span>
+            <span class="ptab on"><i></i>Bookings</span>
+            <span class="ptab"><i></i>Finance</span>
+            <span class="ptab"><i></i>Settings</span>
+          </div>
+        </div>
+
+        <!-- Cena 2: fatura de aluguel nascendo -->
+        <div class="scene" data-scene="1">
+          <p class="ptitle">Finance</p>
+          <div class="pcardinfo"><b>Automatic billing</b><p>Lease found · Studio 04 · due day 10 → generating July's invoice…</p></div>
+          <div class="prow"><div class="pbar" style="background:#8B5CF6"></div><div><b>Rent — House 134 — 07/2026</b><small>Due 07/04 · Maria</small></div><span class="pbadge g">Paid</span></div>
+          <div class="prow rowin"><div class="pbar" style="background:#3B82F6"></div><div><b>Rent — Studio 04 — 07/2026</b><small>Due 07/10 · João</small></div><span class="pbadge b">Pending</span></div>
+          <span class="tap" style="top:190px;left:40px"></span>
+          <div class="ptabs">
+            <span class="ptab"><i></i>Dashboard</span>
+            <span class="ptab"><i></i>Members</span>
+            <span class="ptab"><i></i>Bookings</span>
+            <span class="ptab on"><i></i>Finance</span>
+            <span class="ptab"><i></i>Settings</span>
+          </div>
+        </div>
+
+        <!-- Cena 3: pagamento e receita subindo -->
+        <div class="scene" data-scene="2">
+          <p class="ptitle">Finance</p>
+          <div class="prev">
+            <p class="rl">Received this month</p>
+            <p class="rv" style="color:#2DD4BF">$<span id="rvCount">0</span></p>
+            <div class="pbars">
+              <i style="height:30%"></i><i style="height:45%"></i><i style="height:38%"></i>
+              <i style="height:62%"></i><i style="height:55%"></i><i class="hi growbar" style="height:92%"></i>
+            </div>
+          </div>
+          <div class="prow flipbadge"><div class="pbar" style="background:#3B82F6"></div><div><b>Rent — Studio 04 — 07/2026</b><small>Due 07/10 · João</small></div><span class="pbadge b pb-pending">Pending</span><span class="pbadge g pb-paid">Paid</span></div>
+          <span class="tap" style="top:236px;right:30px"></span>
+          <div class="ptabs">
+            <span class="ptab"><i></i>Dashboard</span>
+            <span class="ptab"><i></i>Members</span>
+            <span class="ptab"><i></i>Bookings</span>
+            <span class="ptab on"><i></i>Finance</span>
+            <span class="ptab"><i></i>Settings</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="inside">
+  <div class="sec-head reveal">
+    <p class="eyebrow" style="justify-content:center">Inside the app</p>
+    <h2>This is what your day looks like</h2>
+    <p>Real screens from Lokaro — dark mode, bilingual, and fast.</p>
+  </div>
+  <div class="showcase reveal">
+
+    <div class="show-item">
+      <div class="phone"><div class="pscreen">
+        <p class="ptitle">Members</p>
+        <div class="psearch">🔍 Search by name or email</div>
+        <div class="pchips"><span class="pchip on">All</span><span class="pchip">Active</span><span class="pchip">Trial</span><span class="pchip">Overdue</span></div>
+        <div class="prow"><div class="pav">JO</div><div><b>João Silva</b><small>joao@gmail.com</small></div><span class="pbadge g">Active</span></div>
+        <div class="prow"><div class="pav">SM</div><div><b>Sarah Miller</b><small>sarah@studio.co</small></div><span class="pbadge b">Trial</span></div>
+        <div class="prow"><div class="pav">DR</div><div><b>Diego Ramos</b><small>diego@dev.io</small></div><span class="pbadge r">Overdue</span></div>
+        <div class="prow"><div class="pav">PE</div><div><b>Pedro Costa</b><small>pedro@mail.com</small></div><span class="pbadge gr">Inactive</span></div>
+        <div class="ptabs">
+          <span class="ptab"><i></i>Dashboard</span>
+          <span class="ptab on"><i></i>Members</span>
+          <span class="ptab"><i></i>Bookings</span>
+          <span class="ptab"><i></i>Finance</span>
+          <span class="ptab"><i></i>Settings</span>
+        </div>
+      </div></div>
+      <p class="show-cap">Members &amp; tenants<small>Statuses, search and safe-delete rules built in.</small></p>
+    </div>
+
+    <div class="show-item">
+      <div class="phone"><div class="pscreen">
+        <p class="ptitle">Bookings</p>
+        <div class="pseg"><span class="on">Schedule</span><span>Rooms</span><span>Leases</span></div>
+        <div class="pcal">
+          <p class="pmon">July 2026</p>
+          <div class="pdays">
+            <span class="pd hd">S</span><span class="pd hd">M</span><span class="pd hd">T</span><span class="pd hd">W</span><span class="pd hd">T</span><span class="pd hd">F</span><span class="pd hd">S</span>
+            <span class="pd"></span><span class="pd"></span><span class="pd"></span><span class="pd dot">1</span><span class="pd">2</span><span class="pd">3</span><span class="pd sel">4</span>
+            <span class="pd">5</span><span class="pd">6</span><span class="pd dot">7</span><span class="pd">8</span><span class="pd">9</span><span class="pd dot">10</span><span class="pd">11</span>
+            <span class="pd">12</span><span class="pd dot">13</span><span class="pd">14</span><span class="pd">15</span><span class="pd">16</span><span class="pd">17</span><span class="pd">18</span>
+          </div>
+        </div>
+        <div class="prow"><div class="pbar" style="background:#2DD4BF"></div><div><b>08:30 – 10:00</b><small>Meeting Room A · João</small></div></div>
+        <div class="prow"><div class="pbar" style="background:#8B5CF6"></div><div><b>14:00 – 18:00</b><small>Hot Desk 12 · Sarah</small></div></div>
+        <div class="ptabs">
+          <span class="ptab"><i></i>Dashboard</span>
+          <span class="ptab"><i></i>Members</span>
+          <span class="ptab on"><i></i>Bookings</span>
+          <span class="ptab"><i></i>Finance</span>
+          <span class="ptab"><i></i>Settings</span>
+        </div>
+      </div></div>
+      <p class="show-cap">Bookings &amp; leases<small>Month calendar, conflict protection, overnight hours.</small></p>
+    </div>
+
+    <div class="show-item">
+      <div class="phone"><div class="pscreen">
+        <p class="ptitle">Finance</p>
+        <div class="prev">
+          <p class="rl">Received this month</p>
+          <p class="rv" style="color:#2DD4BF">$4,320</p>
+          <div class="pbars"><i style="height:30%"></i><i style="height:45%"></i><i style="height:38%"></i><i style="height:62%"></i><i style="height:55%"></i><i class="hi" style="height:92%"></i></div>
+        </div>
+        <div class="prow"><div class="pbar" style="background:#3B82F6"></div><div><b>Rent — Studio 04 — 07/2026</b><small>Due 07/10 · João</small></div><span class="pbadge g">Paid</span></div>
+        <div class="prow"><div class="pbar" style="background:#2DD4BF"></div><div><b>Rent — House 134 — 07/2026</b><small>Due 07/04 · Maria</small></div><span class="pbadge b">Pending</span></div>
+        <div class="ptabs">
+          <span class="ptab"><i></i>Dashboard</span>
+          <span class="ptab"><i></i>Members</span>
+          <span class="ptab"><i></i>Bookings</span>
+          <span class="ptab on"><i></i>Finance</span>
+          <span class="ptab"><i></i>Settings</span>
+        </div>
+      </div></div>
+      <p class="show-cap">Billing on autopilot<small>Rent invoices generate themselves. Reminders go out alone.</small></p>
+    </div>
+
+  </div>
+</section>
+
+<section id="who">
+  <div class="sec-head reveal">
+    <p class="eyebrow" style="justify-content:center">Made for you</p>
+    <h2>One app, three kinds of owners</h2>
+    <p>Lokaro adapts to what you manage — or all of it at once.</p>
+  </div>
+  <div class="who">
+    <div class="who-card reveal spot">
+      <span class="wemoji">🏢</span>
+      <h3>Coworking operators</h3>
+      <p>Rooms and desks booked by the hour, without double-booking headaches.</p>
+      <ul>
+        <li>Conflict-proof scheduling</li>
+        <li>Per-room business hours, even 24/7</li>
+        <li>Occupancy at a glance</li>
+      </ul>
+    </div>
+    <div class="who-card reveal spot">
+      <span class="wemoji">🏠</span>
+      <h3>House landlords</h3>
+      <p>Every rental with its lease, value and due day — rent never slips again.</p>
+      <ul>
+        <li>Monthly invoices on autopilot</li>
+        <li>"Rent due soon" emails to tenants</li>
+        <li>Paid vs pending, always visible</li>
+      </ul>
+    </div>
+    <div class="who-card reveal spot">
+      <span class="wemoji">🔑</span>
+      <h3>Kitnet &amp; studio owners</h3>
+      <p>Many small units, many due dates — organized in one clean screen.</p>
+      <ul>
+        <li>Unlimited units on Pro</li>
+        <li>One tenant per unit, enforced</li>
+        <li>Portfolio revenue by month</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section id="pricing">
+  <div class="sec-head reveal">
+    <p class="eyebrow" style="justify-content:center">Pricing</p>
+    <h2>Honest pricing. No surprises.</h2>
+    <p>Start free — no credit card. Upgrade when you grow.</p>
+  </div>
+  <div class="pricing">
+    <div class="plan reveal spot">
+      <div class="pname">Free</div>
+      <div class="price">$0<span>/mo</span></div>
+      <p class="pdesc">Try Lokaro with your first units.</p>
+      <ul>
+        <li>Up to 2 units (rooms or rentals)</li>
+        <li>Bookings &amp; rental leases</li>
+        <li>Automatic invoices</li>
+        <li>Email reminders</li>
+      </ul>
+      <a href="#waitlist" class="btn ghost">Start free</a>
+    </div>
+    <div class="plan featured reveal spot">
+      <div class="pop">MOST POPULAR</div>
+      <div class="pname">Starter</div>
+      <div class="price">$29<span>/mo</span></div>
+      <p class="pdesc">For growing spaces and landlords.</p>
+      <ul>
+        <li>Up to 10 units</li>
+        <li>Everything in Free</li>
+        <li>Revenue dashboard</li>
+        <li>No Lokaro branding on emails</li>
+        <li>Priority support</li>
+      </ul>
+      <!-- TROQUE o href pelo Payment Link do Stripe (Starter) -->
+      <a href="#waitlist" class="btn primary">Choose Starter</a>
+    </div>
+    <div class="plan reveal spot">
+      <div class="pname">Pro</div>
+      <div class="price">$59<span>/mo</span></div>
+      <p class="pdesc">For operators managing at scale.</p>
+      <ul>
+        <li>Unlimited units</li>
+        <li>Everything in Starter</li>
+        <li>Advanced reports</li>
+        <li>Multi-property portfolio</li>
+        <li>Dedicated onboarding</li>
+      </ul>
+      <!-- TROQUE o href pelo Payment Link do Stripe (Pro) -->
+      <a href="#waitlist" class="btn ghost">Choose Pro</a>
+    </div>
+  </div>
+</section>
+
+
+<section id="faq">
+  <div class="sec-head reveal">
+    <p class="eyebrow" style="justify-content:center">Questions</p>
+    <h2>Frequently asked</h2>
+  </div>
+  <div class="faq reveal">
+    <details>
+      <summary>Is the free plan really free?</summary>
+      <p class="fa">Yes. Up to 2 units, forever, with bookings, leases, automatic invoices and email reminders included. No credit card, no trial countdown.</p>
+    </details>
+    <details>
+      <summary>Does it work for rentals AND coworking at the same time?</summary>
+      <p class="fa">Yes — that is the whole point. A unit can be a meeting room booked by the hour or a house with a monthly lease. Both live in the same dashboard and the same billing.</p>
+    </details>
+    <details>
+      <summary>How do the automatic rent invoices work?</summary>
+      <p class="fa">When you create a lease, you set the monthly value and the due day. Lokaro generates the invoice 7 days before it is due, every month, and emails the tenant a reminder 3 days before. You just watch them get paid.</p>
+    </details>
+    <details>
+      <summary>What languages and platforms are supported?</summary>
+      <p class="fa">English and Portuguese, light and dark mode. Lokaro launches as a mobile app for Android and iOS, with the web version available for desktops.</p>
+    </details>
+    <details>
+      <summary>Can I cancel anytime?</summary>
+      <p class="fa">Yes. Downgrade or cancel whenever you want — your data stays and your account simply returns to the Free plan limits.</p>
+    </details>
+  </div>
+</section>
+
+<section id="waitlist">
+  <div class="cta-final reveal">
+    <h2>Your space, finally under control</h2>
+    <p style="color:var(--mut);max-width:460px;margin:10px auto 0">Join the early access list and be first to get Lokaro when it launches on Android and iOS.</p>
+    <form class="wl-form" onsubmit="event.preventDefault();this.innerHTML='<p style=\'color:var(--teal);font-weight:600\'>You are on the list! 🎉</p>'">
+      <input type="email" required placeholder="you@yourspace.com">
+      <button class="btn primary" type="submit">Get early access</button>
+    </form>
+    <p class="form-note">No spam. One email when we launch.</p>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 Lokaro · <a href="mailto:contato@lokaro.co">contato@lokaro.co</a> · Made for people who run spaces</p>
+</footer>
+
+<script src="../js/main.js"></script>
+</body>
+</html>
+
+
