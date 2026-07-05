@@ -175,6 +175,18 @@ h2{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(26px,3.6vw,40px
 .feat:hover h3{color:var(--teal)}
 .feat p{font-size:14.5px;line-height:1.6;color:var(--mut)}
 
+/* App download */
+.stores{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px}
+.store-card{
+  background:var(--card);border:1px solid var(--card-border);border-radius:var(--radius);
+  padding:30px 24px;transition:transform .35s var(--ease),border-color .35s var(--ease),background .35s var(--ease);
+}
+.store-card:hover{transform:translateY(-6px);border-color:rgba(45,212,191,.4);background:rgba(255,255,255,.055)}
+.store-tag{font-size:12px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--teal);margin-bottom:10px}
+.store-card h3{font-size:26px;font-family:'Syne',sans-serif;letter-spacing:-.2px;margin-bottom:8px}
+.store-card p{font-size:14.5px;line-height:1.6;color:var(--mut);margin-bottom:18px}
+.store-off{pointer-events:none;opacity:.78;filter:saturate(.75)}
+
 /* Pricing */
 .pricing{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;align-items:stretch}
 .plan{
