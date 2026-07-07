@@ -1,4 +1,5 @@
 {
+  "cleanUrls": true,
   "redirects": [
     {
       "source": "/html/index.html",
@@ -9,6 +10,18 @@
       "source": "/html",
       "destination": "/",
       "permanent": true
+    }
+  ],
+  "rewrites": [
+    {
+      "source": "/",
+      "has": [{ "type": "host", "value": "lokaro.com.br" }],
+      "destination": "/br.html"
+    },
+    {
+      "source": "/",
+      "has": [{ "type": "host", "value": "www.lokaro.com.br" }],
+      "destination": "/br.html"
     }
   ]
 }
