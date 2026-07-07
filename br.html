@@ -159,6 +159,7 @@ h2{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(26px,3.6vw,40px
 .feat::before{
   content:"";position:absolute;inset:0;border-radius:inherit;padding:1px;
   background:var(--grad);opacity:0;transition:opacity .35s var(--ease);
+  mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
   -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
   -webkit-mask-composite:xor;mask-composite:exclude;pointer-events:none;
 }
