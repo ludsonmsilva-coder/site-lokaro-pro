@@ -10,18 +10,18 @@
       "source": "/html",
       "destination": "/",
       "permanent": true
-    }
-  ],
-  "rewrites": [
+    },
     {
       "source": "/",
       "has": [{ "type": "host", "value": "lokaro.com.br" }],
-      "destination": "/br.html"
+      "destination": "/br",
+      "permanent": false
     },
     {
       "source": "/",
       "has": [{ "type": "host", "value": "www.lokaro.com.br" }],
-      "destination": "/br.html"
+      "destination": "/br",
+      "permanent": false
     }
   ]
 }
