@@ -22,6 +22,12 @@
       "has": [{ "type": "host", "value": "www.lokaro.com.br" }],
       "destination": "/br",
       "permanent": false
+    },
+    {
+      "source": "/",
+      "has": [{ "type": "host", "value": "lokaro.vercel.app" }],
+      "destination": "/br",
+      "permanent": false
     }
   ]
 }
