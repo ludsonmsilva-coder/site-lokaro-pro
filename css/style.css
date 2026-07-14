@@ -581,23 +581,24 @@ h1 .gword{
 .brow .pbadge{margin-left:auto}
 
 /* Hero device duo */
-.device-hero{position:relative}
+.device-hero{position:relative;display:flex;align-items:flex-end;gap:12px}
 .device-hero .browser{
+  flex:1;min-width:0;
   transition:transform .18s ease-out,box-shadow .4s var(--ease);
   will-change:transform;
 }
 .phone-mini{
-  position:absolute;bottom:-18px;right:-18px;
-  width:128px;border-radius:22px;
+  flex-shrink:0;
+  width:120px;border-radius:22px;
   border:5px solid #1B2740;
   box-shadow:0 18px 48px rgba(0,0,0,.7),inset 0 0 0 1px rgba(147,163,188,.12);
-  z-index:2;background:#0D1526;overflow:hidden;
+  background:#0D1526;overflow:hidden;position:relative;
 }
 .phone-mini::before{
   content:"";position:absolute;top:6px;left:50%;transform:translateX(-50%);
   width:42px;height:11px;border-radius:7px;background:#050A14;z-index:5;
 }
-.phone-mini .pscreen{padding:22px 8px 10px;min-height:unset}
+.phone-mini .pscreen{padding:22px 7px 10px;min-height:unset}
 
 /* Web showcase block */
 .web-showcase{display:flex;flex-direction:column;align-items:center;margin-bottom:44px}
@@ -624,10 +625,9 @@ h1 .gword{
   .logo{width:62px;height:62px;border-radius:16px}
   .brand span{font-size:22px}
   .lang-btn{font-size:11px;padding:5px 8px}
-  .phone-mini{width:108px;bottom:-12px;right:-12px}
+  .phone-mini{width:100px}
   .phone-mini .pscreen{font-size:7px}
-  .bsidebar{width:76px}
-  .bsb-item{font-size:8px;padding:5px 5px}
+  .bsidebar{display:none}
   .bkpis{grid-template-columns:repeat(2,1fr)}
 }
 
