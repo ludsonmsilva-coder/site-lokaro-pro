@@ -188,7 +188,7 @@ const translations = {
     'faq.q5':'Can I cancel anytime?','faq.a5':'Yes. Downgrade or cancel whenever you want \u2014 your data stays and your account simply returns to the Free plan limits.',
     'cta.h2':'Your space, finally under control',
     'cta.p':'Start for free today. No credit card, no download \u2014 open the web app and be organized in minutes.',
-    'cta.btn1':'Open Lokaro \u2014 it\u2019s free','cta.btn2':'lokaro.co',
+    'cta.btn1':'Open Lokaro \u2014 it\u2019s free','cta.btn2':'\u2709\ufe0f Contact support',
     'cta.note':'Free plan: 2 units forever \u00b7 No credit card needed',
     'footer.tagline':'Made for people who run spaces',
   },
@@ -243,7 +243,7 @@ const translations = {
     'faq.q5':'\u00bfPuedo cancelar en cualquier momento?','faq.a5':'S\u00ed. Baja de plan o cancela cuando quieras \u2014 tus datos permanecen y tu cuenta vuelve a los l\u00edmites del plan Gratis.',
     'cta.h2':'Tu espacio, por fin bajo control',
     'cta.p':'Empieza gratis hoy. Sin tarjeta, sin descargas \u2014 abre la app web y organ\u00edzate en minutos.',
-    'cta.btn1':'Abrir Lokaro \u2014 es gratis','cta.btn2':'lokaro.co',
+    'cta.btn1':'Abrir Lokaro \u2014 es gratis','cta.btn2':'\u2709\ufe0f Contactar soporte',
     'cta.note':'Plan gratuito: 2 unidades para siempre \u00b7 Sin tarjeta de cr\u00e9dito',
     'footer.tagline':'Hecho para personas que gestionan espacios',
   }
