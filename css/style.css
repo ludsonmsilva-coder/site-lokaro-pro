@@ -188,7 +188,7 @@ h2{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(26px,3.6vw,40px
 .store-off{pointer-events:none;opacity:.78;filter:saturate(.75)}
 
 /* Pricing */
-.pricing{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;align-items:stretch;padding-top:18px}
+.pricing{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;align-items:stretch}
 .plan{
   background:var(--card);border:1px solid var(--card-border);border-radius:20px;padding:32px 28px;
   display:flex;flex-direction:column;position:relative;
@@ -199,15 +199,16 @@ h2{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(26px,3.6vw,40px
   background:linear-gradient(170deg,rgba(37,99,235,.16),rgba(45,212,191,.08));
   border:1.5px solid transparent;
   background-clip:padding-box;
+  padding-top:50px;
 }
 .plan.featured::before{
   content:"";position:absolute;inset:-1.5px;border-radius:21px;z-index:-1;background:var(--grad);
 }
 .plan.featured:hover{box-shadow:0 26px 60px rgba(37,99,235,.35)}
 .pop{
-  position:absolute;top:-13px;left:50%;transform:translateX(-50%);
+  position:absolute;top:14px;left:50%;transform:translateX(-50%);
   font-size:11.5px;font-weight:700;letter-spacing:.06em;color:#06131f;
-  background:var(--grad);padding:5px 14px;border-radius:999px;
+  background:var(--grad);padding:5px 14px;border-radius:999px;white-space:nowrap;
 }
 .plan .pname{font-size:14px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--mut);margin-bottom:10px}
 .plan .price{font-family:'Syne',sans-serif;font-size:44px;font-weight:800;margin-bottom:6px}
