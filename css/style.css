@@ -523,11 +523,111 @@ h1 .gword{
 .lang-btn:hover{border-color:var(--teal);color:var(--ink)}
 .lang-btn.active{background:rgba(45,212,191,.15);border-color:var(--teal);color:var(--teal)}
 
+/* ---------- Browser mockup ---------- */
+.browser{
+  border-radius:12px;background:#0D1526;
+  border:2px solid #1B2740;
+  box-shadow:0 24px 60px rgba(0,0,0,.5),inset 0 0 0 1px rgba(147,163,188,.1);
+  overflow:hidden;
+}
+.browser-bar{
+  height:34px;background:#111D30;border-bottom:1px solid rgba(147,163,188,.1);
+  display:flex;align-items:center;padding:0 12px;gap:8px;
+}
+.browser-dots{display:flex;gap:5px}
+.browser-dots span{width:9px;height:9px;border-radius:50%}
+.browser-dots span:nth-child(1){background:rgba(248,113,113,.75)}
+.browser-dots span:nth-child(2){background:rgba(251,191,36,.75)}
+.browser-dots span:nth-child(3){background:rgba(52,211,153,.75)}
+.browser-url{
+  flex:1;background:rgba(255,255,255,.06);
+  border:1px solid rgba(147,163,188,.1);border-radius:5px;
+  height:20px;display:flex;align-items:center;
+  padding:0 7px;font-size:9.5px;color:var(--mut);gap:4px;
+}
+.bscreen{padding:10px}
+.blayout{display:flex}
+.bsidebar{
+  width:100px;flex-shrink:0;padding:6px;
+  border-right:1px solid rgba(147,163,188,.08);
+}
+.bsb-logo{
+  font-family:'Syne',sans-serif;font-weight:800;font-size:10.5px;
+  color:var(--ink);padding:4px 6px 10px;
+}
+.bsb-item{
+  font-size:9px;font-weight:500;color:var(--mut);
+  padding:6px 7px;border-radius:6px;margin-bottom:1px;
+  display:flex;align-items:center;gap:4px;
+}
+.bsb-item.active{background:rgba(37,99,235,.18);color:var(--blue-soft)}
+.bmain{flex:1;padding:0 0 0 10px;overflow:hidden}
+.bgreeting{font-size:9px;font-weight:500;color:var(--mut);margin-bottom:8px}
+.bkpis{display:grid;grid-template-columns:repeat(4,1fr);gap:5px;margin-bottom:8px}
+.bkpi{
+  background:rgba(255,255,255,.04);border:1px solid rgba(147,163,188,.1);
+  border-radius:7px;padding:7px 5px;text-align:center;
+}
+.bkpi b{font-size:12px;font-weight:700;display:block;color:var(--ink);margin-bottom:1px}
+.bkpi span{font-size:7px;color:var(--mut);display:block}
+.brow{
+  display:flex;align-items:center;gap:6px;
+  background:rgba(255,255,255,.03);border:1px solid rgba(147,163,188,.08);
+  border-radius:7px;padding:6px 8px;margin-bottom:4px;
+}
+.brow .bbar{width:3px;height:18px;border-radius:3px;flex-shrink:0}
+.brow b{font-size:9px;display:block;color:var(--ink)}
+.brow small{color:var(--mut);font-size:7.5px}
+.brow .pbadge{margin-left:auto}
+
+/* Hero device duo */
+.device-hero{position:relative}
+.device-hero .browser{
+  transition:transform .18s ease-out,box-shadow .4s var(--ease);
+  will-change:transform;
+}
+.phone-mini{
+  position:absolute;bottom:-18px;right:-18px;
+  width:128px;border-radius:22px;
+  border:5px solid #1B2740;
+  box-shadow:0 18px 48px rgba(0,0,0,.7),inset 0 0 0 1px rgba(147,163,188,.12);
+  z-index:2;background:#0D1526;overflow:hidden;
+}
+.phone-mini::before{
+  content:"";position:absolute;top:6px;left:50%;transform:translateX(-50%);
+  width:42px;height:11px;border-radius:7px;background:#050A14;z-index:5;
+}
+.phone-mini .pscreen{padding:22px 8px 10px;min-height:unset}
+
+/* Web showcase block */
+.web-showcase{display:flex;flex-direction:column;align-items:center;margin-bottom:44px}
+.show-browser{
+  width:100%;max-width:820px;
+  transition:transform .55s var(--ease),box-shadow .55s var(--ease);
+}
+.show-browser:hover{
+  transform:translateY(-8px);
+  box-shadow:0 50px 100px rgba(37,99,235,.3),inset 0 0 0 1.5px rgba(45,212,191,.35);
+}
+.mobile-label{
+  text-align:center;font-size:12px;font-weight:700;letter-spacing:.1em;
+  text-transform:uppercase;color:var(--mut);margin-bottom:28px;
+  display:flex;align-items:center;justify-content:center;gap:10px;
+}
+.mobile-label::before,.mobile-label::after{
+  content:"";flex:1;max-width:100px;height:1px;background:var(--card-border);
+}
+
 @media (max-width:900px){
   .hero{grid-template-columns:1fr;padding-top:56px;gap:44px}
   .nav-links a:not(.nav-cta){display:none}
   .logo{width:62px;height:62px;border-radius:16px}
   .brand span{font-size:22px}
   .lang-btn{font-size:11px;padding:5px 8px}
+  .phone-mini{width:108px;bottom:-12px;right:-12px}
+  .phone-mini .pscreen{font-size:7px}
+  .bsidebar{width:76px}
+  .bsb-item{font-size:8px;padding:5px 5px}
+  .bkpis{grid-template-columns:repeat(2,1fr)}
 }
 

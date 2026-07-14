@@ -23,19 +23,19 @@
   });
 
   if (!reduced) {
-    // Tilt 3D do iPhone do herói acompanhando o cursor
+    // Tilt 3D do hero acompanhando o cursor
     const hero = document.querySelector('.hero');
-    const heroPhone = document.querySelector('.mock .phone');
-    if (hero && heroPhone) {
+    const heroEl = document.querySelector('.device-hero .browser') || document.querySelector('.mock .phone');
+    if (hero && heroEl) {
       hero.addEventListener('pointermove', e => {
         const r = hero.getBoundingClientRect();
         const x = (e.clientX - r.left) / r.width - 0.5;
         const y = (e.clientY - r.top) / r.height - 0.5;
-        heroPhone.style.transform =
-          `rotateY(${x * 14}deg) rotateX(${-y * 10}deg) translateZ(6px)`;
+        heroEl.style.transform =
+          `rotateY(${x * 10}deg) rotateX(${-y * 6}deg) translateZ(6px)`;
       });
       hero.addEventListener('pointerleave', () => {
-        heroPhone.style.transform = '';
+        heroEl.style.transform = '';
       });
     }
 

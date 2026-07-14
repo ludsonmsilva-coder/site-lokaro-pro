@@ -45,75 +45,46 @@
     <p class="hero-note" data-i18n="hero.note">No credit card required · Runs in your browser</p>
   </div>
 
-  <div class="mock" aria-hidden="true">
-    <div class="phone phone-app" style="margin:0 auto">
+  <div class="mock device-hero" aria-hidden="true">
+    <div class="browser">
+      <div class="browser-bar">
+        <div class="browser-dots"><span></span><span></span><span></span></div>
+        <div class="browser-url">🔒&nbsp;lokaro.vercel.app</div>
+      </div>
+      <div class="bscreen">
+        <div class="blayout">
+          <div class="bsidebar">
+            <div class="bsb-logo">Lokaro</div>
+            <div class="bsb-item active">📊 Dashboard</div>
+            <div class="bsb-item">👥 Members</div>
+            <div class="bsb-item">📅 Bookings</div>
+            <div class="bsb-item">💸 Finance</div>
+            <div class="bsb-item">⚙️ Settings</div>
+          </div>
+          <div class="bmain">
+            <p class="bgreeting">Good morning 👋 &nbsp;<b style="color:var(--ink)">Sunset Hub</b></p>
+            <div class="bkpis">
+              <div class="bkpi"><b>24</b><span>Members</span></div>
+              <div class="bkpi"><b>12</b><span>Bookings</span></div>
+              <div class="bkpi"><b>8</b><span>Units</span></div>
+              <div class="bkpi"><b style="color:#2DD4BF">$4,320</b><span>Revenue</span></div>
+            </div>
+            <div class="brow"><div class="bbar" style="background:#2DD4BF"></div><div><b>Meeting Room A</b><small>09:00–11:00 · Sarah M.</small></div><span class="pbadge g">Active</span></div>
+            <div class="brow"><div class="bbar" style="background:#3B82F6"></div><div><b>Studio 04 · Rent — July</b><small>Due 07/10 · João</small></div><span class="pbadge g">Paid</span></div>
+            <div class="brow"><div class="bbar" style="background:#F87171"></div><div><b>House 134 · Rent — July</b><small>Due 07/04 · Maria</small></div><span class="pbadge b">Pending</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="phone phone-mini">
       <div class="pscreen">
-        <div class="pviews">
-          <div class="pview on" data-view="dashboard">
-            <p class="pgreet">Good morning 👋</p>
-            <p class="ptitle">Sunset Hub</p>
-            <div class="pkpis">
-              <div class="pkpi spot"><div class="pi" style="background:rgba(37,99,235,.2);color:#60A5FA">👥</div><b>24</b><span>Active members</span></div>
-              <div class="pkpi spot"><div class="pi" style="background:rgba(45,212,191,.16);color:#2DD4BF">📅</div><b>12</b><span>Bookings today</span></div>
-              <div class="pkpi spot"><div class="pi" style="background:rgba(139,92,246,.18);color:#A78BFA">🚪</div><b>8</b><span>Active units</span></div>
-              <div class="pkpi spot"><div class="pi" style="background:rgba(248,113,113,.14);color:#F87171">⚠️</div><b>3</b><span>Pending invoices</span></div>
-            </div>
-            <div class="prow"><div class="pbar" style="background:#2DD4BF"></div><div><b>Meeting Room A</b><small>09:00–11:00 · Sarah M.</small></div></div>
-            <div class="prow"><div class="pbar" style="background:#3B82F6"></div><div><b>Studio 04 · Rent</b><small>July</small></div><span class="pbadge g">Paid</span></div>
-            <div class="pcardinfo"><b>Next steps</b><p>Invite your first members and let billing run on autopilot.</p></div>
-          </div>
-
-          <div class="pview" data-view="members">
-            <p class="ptitle">Members</p>
-            <div class="psearch">🔍 Search by name or email</div>
-            <div class="pchips"><span class="pchip on">All</span><span class="pchip">Active</span><span class="pchip">Trial</span><span class="pchip">Overdue</span></div>
-            <div class="prow"><div class="pav">JO</div><div><b>João Silva</b><small>joao@gmail.com</small></div><span class="pbadge g">Active</span></div>
-            <div class="prow"><div class="pav">SM</div><div><b>Sarah Miller</b><small>sarah@studio.co</small></div><span class="pbadge b">Trial</span></div>
-            <div class="prow"><div class="pav">DR</div><div><b>Diego Ramos</b><small>diego@dev.io</small></div><span class="pbadge r">Overdue</span></div>
-          </div>
-
-          <div class="pview" data-view="bookings">
-            <p class="ptitle">Bookings</p>
-            <div class="pseg"><span class="on">Schedule</span><span>Rooms</span><span>Leases</span></div>
-            <div class="pcal">
-              <p class="pmon">July 2026</p>
-              <div class="pdays">
-                <span class="pd hd">S</span><span class="pd hd">M</span><span class="pd hd">T</span><span class="pd hd">W</span><span class="pd hd">T</span><span class="pd hd">F</span><span class="pd hd">S</span>
-                <span class="pd"></span><span class="pd"></span><span class="pd"></span><span class="pd dot">1</span><span class="pd">2</span><span class="pd">3</span><span class="pd sel">4</span>
-                <span class="pd">5</span><span class="pd">6</span><span class="pd dot">7</span><span class="pd">8</span><span class="pd">9</span><span class="pd dot">10</span><span class="pd">11</span>
-              </div>
-            </div>
-            <div class="prow"><div class="pbar" style="background:#2DD4BF"></div><div><b>08:30 – 10:00</b><small>Meeting Room A · João</small></div></div>
-            <div class="prow"><div class="pbar" style="background:#8B5CF6"></div><div><b>14:00 – 18:00</b><small>Hot Desk 12 · Sarah</small></div></div>
-          </div>
-
-          <div class="pview fin" data-view="finance">
-            <p class="ptitle">Finance</p>
-            <div class="prev">
-              <p class="rl">Received this month</p>
-              <p class="rv" style="color:#2DD4BF">$4,320</p>
-              <div class="pbars"><i style="height:30%"></i><i style="height:45%"></i><i style="height:38%"></i><i style="height:62%"></i><i style="height:55%"></i><i class="hi" style="height:92%"></i></div>
-            </div>
-            <div class="prow"><div class="pbar" style="background:#3B82F6"></div><div><b>Rent — Studio 04 — 07/2026</b><small>Due 07/10 · João</small></div><span class="pbadge g">Paid</span></div>
-            <div class="prow"><div class="pbar" style="background:#2DD4BF"></div><div><b>Rent — House 134 — 07/2026</b><small>Due 07/04 · Maria</small></div><span class="pbadge b">Pending</span></div>
-          </div>
-
-          <div class="pview" data-view="settings">
-            <p class="ptitle">Settings</p>
-            <div class="pkpi"><div class="pi" style="background:rgba(37,99,235,.2);color:#60A5FA">🌐</div><b>Language</b><span>English / Português</span></div>
-            <div class="pkpi" style="margin-top:8px"><div class="pi" style="background:rgba(45,212,191,.16);color:#2DD4BF">🔔</div><b>Reminders</b><span>Email notifications: On</span></div>
-            <div class="pkpi" style="margin-top:8px"><div class="pi" style="background:rgba(248,113,113,.14);color:#F87171">🔒</div><b>Security</b><span>2FA recommended</span></div>
-            <div class="pcardinfo" style="margin-top:10px"><b>Plan</b><p>Starter · 10 units · Next billing on Jul 20</p></div>
-          </div>
+        <p class="ptitle">Dashboard</p>
+        <div class="pkpis">
+          <div class="pkpi"><div class="pi" style="background:rgba(37,99,235,.2);color:#60A5FA">👥</div><b>24</b><span>Members</span></div>
+          <div class="pkpi"><div class="pi" style="background:rgba(45,212,191,.16);color:#2DD4BF">📅</div><b>12</b><span>Today</span></div>
         </div>
-
-        <div class="ptabs">
-          <button class="ptab ptab-btn on" data-target="dashboard" type="button"><i></i>Dashboard</button>
-          <button class="ptab ptab-btn" data-target="members" type="button"><i></i>Members</button>
-          <button class="ptab ptab-btn" data-target="bookings" type="button"><i></i>Bookings</button>
-          <button class="ptab ptab-btn" data-target="finance" type="button"><i></i>Finance</button>
-          <button class="ptab ptab-btn" data-target="settings" type="button"><i></i>Settings</button>
-        </div>
+        <div class="prow"><div class="pbar" style="background:#2DD4BF"></div><div><b>Meeting Room A</b><small>09:00–11:00</small></div></div>
+        <div class="prow"><div class="pbar" style="background:#3B82F6"></div><div><b>Studio 04</b><small>July</small></div><span class="pbadge g">Paid</span></div>
       </div>
     </div>
   </div>
@@ -289,6 +260,42 @@
     <h2 data-i18n="inside.h2">This is what your day looks like</h2>
     <p data-i18n="inside.p">Real screens from Lokaro — dark mode, bilingual, and fast.</p>
   </div>
+  <div class="web-showcase reveal spot">
+    <div class="browser show-browser">
+      <div class="browser-bar">
+        <div class="browser-dots"><span></span><span></span><span></span></div>
+        <div class="browser-url">🔒&nbsp;lokaro.vercel.app</div>
+      </div>
+      <div class="bscreen">
+        <div class="blayout">
+          <div class="bsidebar">
+            <div class="bsb-logo">Lokaro</div>
+            <div class="bsb-item active">📊 Dashboard</div>
+            <div class="bsb-item">👥 Members</div>
+            <div class="bsb-item">📅 Bookings</div>
+            <div class="bsb-item">💸 Finance</div>
+            <div class="bsb-item">⚙️ Settings</div>
+          </div>
+          <div class="bmain">
+            <p class="bgreeting">Good morning 👋 &nbsp;<b style="color:var(--ink)">Sunset Hub</b></p>
+            <div class="bkpis">
+              <div class="bkpi"><b>24</b><span>Members</span></div>
+              <div class="bkpi"><b>12</b><span>Bookings today</span></div>
+              <div class="bkpi"><b>8</b><span>Active units</span></div>
+              <div class="bkpi"><b style="color:#2DD4BF">$4,320</b><span>Revenue · Jul</span></div>
+            </div>
+            <div class="brow"><div class="bbar" style="background:#2DD4BF"></div><div><b>Meeting Room A</b><small>09:00–11:00 · Sarah M.</small></div><span class="pbadge g">Active</span></div>
+            <div class="brow"><div class="bbar" style="background:#3B82F6"></div><div><b>Studio 04 · Rent — July 2026</b><small>Due 07/10 · João Silva</small></div><span class="pbadge g">Paid</span></div>
+            <div class="brow"><div class="bbar" style="background:#8B5CF6"></div><div><b>Hot Desk 12 — 14:00–18:00</b><small>Sarah Miller</small></div><span class="pbadge b">Upcoming</span></div>
+            <div class="brow"><div class="bbar" style="background:#F87171"></div><div><b>House 134 · Rent — July 2026</b><small>Due 07/04 · Maria Costa</small></div><span class="pbadge b">Pending</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <p class="show-cap" style="text-align:center;margin-top:20px">Web — desktop &amp; tablet<small>Full Lokaro in any browser. No install required.</small></p>
+  </div>
+
+  <p class="mobile-label reveal">📱 Mobile</p>
   <div class="showcase reveal">
 
     <div class="show-item">
