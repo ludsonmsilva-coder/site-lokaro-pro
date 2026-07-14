@@ -188,7 +188,7 @@ h2{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(26px,3.6vw,40px
 .store-off{pointer-events:none;opacity:.78;filter:saturate(.75)}
 
 /* Pricing */
-.pricing{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;align-items:stretch}
+.pricing{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;align-items:stretch;padding-top:18px}
 .plan{
   background:var(--card);border:1px solid var(--card-border);border-radius:20px;padding:32px 28px;
   display:flex;flex-direction:column;position:relative;
