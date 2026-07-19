@@ -223,9 +223,39 @@ h2{font-family:'Syne',sans-serif;font-weight:800;font-size:clamp(26px,3.6vw,40px
   background:rgba(255,255,255,.05);border:1.5px solid var(--card-border);outline:none;
   transition:border-color .3s var(--ease),box-shadow .3s var(--ease);
 }
+.wl-form textarea{
+  width:min(692px,80vw);min-height:124px;padding:14px 18px;border-radius:12px;font-size:15px;color:var(--ink);
+  background:rgba(255,255,255,.05);border:1.5px solid var(--card-border);outline:none;resize:vertical;
+  transition:border-color .3s var(--ease),box-shadow .3s var(--ease);font-family:inherit;line-height:1.45;
+}
 .wl-form input::placeholder{color:var(--mut)}
-.wl-form input:focus{border-color:var(--teal);box-shadow:0 0 0 4px rgba(45,212,191,.14)}
+.wl-form textarea::placeholder{color:var(--mut)}
+.wl-form input:focus,
+.wl-form textarea:focus{border-color:var(--teal);box-shadow:0 0 0 4px rgba(45,212,191,.14)}
+.wl-form .full-line{flex-basis:100%;display:flex;justify-content:center}
+.wl-form .form-row{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;align-items:center}
 .form-note{margin-top:14px;font-size:12.5px;color:var(--mut)}
+.char-count{font-size:12.5px;color:var(--mut);margin-top:2px}
+.form-status{margin-top:14px;font-size:13.5px;min-height:20px}
+.support-intro{color:var(--mut);max-width:620px;margin:10px auto 0;line-height:1.35;word-break:normal;overflow-wrap:normal;hyphens:none}
+
+.admin-panel{
+  margin:24px auto 0;max-width:860px;text-align:left;padding:18px;border-radius:14px;
+  border:1px dashed rgba(147,163,188,.35);background:rgba(2,6,23,.3);
+}
+.admin-panel h3{font-size:16px;margin-bottom:10px}
+.admin-auth{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.admin-auth input{width:min(360px,100%)}
+.admin-list{display:grid;gap:12px;margin-top:14px}
+.ticket{
+  border:1px solid var(--card-border);border-radius:12px;padding:12px;background:rgba(255,255,255,.03);
+}
+.ticket .meta{display:flex;gap:10px;flex-wrap:wrap;color:var(--mut);font-size:12.5px;margin-bottom:8px}
+.ticket p{font-size:14px;line-height:1.5;white-space:pre-wrap}
+.ticket .actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.badge{display:inline-block;padding:2px 8px;border-radius:999px;font-size:11px;font-weight:700;letter-spacing:.04em}
+.badge.new{background:rgba(59,130,246,.2);color:#93C5FD}
+.badge.answered{background:rgba(16,185,129,.2);color:#6EE7B7}
 
 /* Footer */
 footer{
@@ -237,23 +267,69 @@ footer a:hover{color:var(--teal)}
 
 
 /* How it works */
-.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px;counter-reset:step}
-.step{
-  background:var(--card);border:1px solid var(--card-border);border-radius:var(--radius);
-  padding:30px 24px;position:relative;counter-increment:step;
-  transition:transform .35s var(--ease),border-color .35s var(--ease),background .35s var(--ease);
+#how{
+  background:#F5F5F0;
+  border:1px solid rgba(45,59,50,.18);
+  border-radius:28px;
+  padding:72px 30px;
 }
-.step::before{
+#how .sec-head{margin:0 auto 46px}
+#how .eyebrow{color:#2D3B32}
+#how .eyebrow::before{background:#2D3B32}
+#how h2{color:#111111}
+#how .sec-head p{color:#414141}
+
+#how .steps{
+  display:grid;
+  grid-template-columns:repeat(4,minmax(0,1fr));
+  gap:18px;
+  counter-reset:step;
+}
+#how .step{
+  background:#FFFFFF;
+  border:1px solid rgba(45,59,50,.2);
+  border-radius:16px;
+  padding:30px 24px;
+  position:relative;
+  counter-increment:step;
+  box-shadow:0 10px 26px rgba(17,17,17,.06);
+  transition:transform .28s var(--ease),box-shadow .28s var(--ease),border-color .28s var(--ease);
+}
+#how .step::before{
   content:counter(step,decimal-leading-zero);
-  font-family:'Syne',sans-serif;font-weight:800;font-size:34px;
-  background:var(--grad);-webkit-background-clip:text;background-clip:text;color:transparent;
-  display:block;margin-bottom:14px;opacity:.9;transition:transform .35s var(--ease);
+  font-family:'Syne',sans-serif;
+  font-weight:800;
+  font-size:33px;
+  color:#2D3B32;
+  display:block;
+  margin-bottom:14px;
+  letter-spacing:.02em;
 }
-.step:hover{transform:translateY(-6px);border-color:rgba(45,212,191,.45);background:rgba(255,255,255,.055)}
-.step:hover::before{transform:scale(1.12)}
-.step h3{font-size:16.5px;font-weight:700;margin-bottom:8px}
-.step p{font-size:14px;line-height:1.6;color:var(--mut)}
-.step .stime{display:inline-block;margin-top:14px;font-size:11.5px;font-weight:600;color:var(--teal);background:rgba(45,212,191,.1);padding:4px 10px;border-radius:999px}
+#how .step:hover{
+  transform:translateY(-4px);
+  border-color:#2D3B32;
+  box-shadow:0 14px 34px rgba(17,17,17,.1);
+}
+#how .step h3{font-size:16.5px;font-weight:700;margin-bottom:8px;color:#111111}
+#how .step p{font-size:14px;line-height:1.62;color:#333333}
+#how .step .stime{
+  display:inline-block;
+  margin-top:14px;
+  font-size:11.5px;
+  font-weight:600;
+  color:#2D3B32;
+  background:rgba(45,59,50,.1);
+  border:1px solid rgba(45,59,50,.2);
+  padding:4px 10px;
+  border-radius:999px;
+}
+@media (max-width:1060px){
+  #how .steps{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media (max-width:640px){
+  #how{padding:56px 18px}
+  #how .steps{grid-template-columns:1fr}
+}
 
 /* Who it's for */
 .who{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}
@@ -430,6 +506,77 @@ footer a:hover{color:var(--teal)}
 .brow small{color:var(--mut);font-size:7.5px}
 .brow .pbadge{margin-left:auto}
 
+.exp-widget{
+  margin-top:7px;
+  border:1px solid rgba(147,163,188,.16);
+  border-radius:8px;
+  padding:7px;
+  background:rgba(255,255,255,.03);
+}
+.exp-head{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:8px;
+  margin-bottom:7px;
+}
+.exp-head b{font-size:8.5px;letter-spacing:.04em;text-transform:uppercase;color:var(--ink)}
+.exp-toggle{
+  border:1px solid rgba(147,163,188,.25);
+  background:rgba(255,255,255,.06);
+  color:var(--ink);
+  font-size:7.5px;
+  font-weight:700;
+  border-radius:999px;
+  padding:3px 8px;
+  cursor:pointer;
+}
+.exp-form{display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-bottom:6px}
+.exp-form.is-hidden{display:none}
+.exp-form input,.exp-form select{
+  width:100%;
+  border:1px solid rgba(147,163,188,.22);
+  background:rgba(255,255,255,.04);
+  color:var(--ink);
+  border-radius:6px;
+  padding:5px 6px;
+  font-size:8px;
+  outline:none;
+}
+.exp-form input::placeholder{color:var(--mut)}
+.exp-form .full{grid-column:1 / -1}
+.exp-form button{
+  justify-self:start;
+  border:1px solid rgba(45,212,191,.36);
+  background:rgba(45,212,191,.12);
+  color:#C6FFF2;
+  border-radius:999px;
+  padding:4px 9px;
+  font-size:8px;
+  font-weight:700;
+  cursor:pointer;
+}
+.exp-msg{font-size:7.5px;color:var(--mut);min-height:11px;margin-bottom:5px}
+.exp-totals,.exp-list{display:grid;gap:4px}
+.exp-row,.exp-item{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:8px;
+  border:1px solid rgba(147,163,188,.14);
+  border-radius:6px;
+  padding:4px 6px;
+  font-size:7.7px;
+}
+.exp-row span,.exp-item small{color:var(--mut)}
+.exp-row b,.exp-item b{color:var(--ink)}
+.exp-empty{font-size:7.5px;color:var(--mut)}
+.phone-exp{margin-top:6px;padding:6px}
+.phone-exp .exp-head b{font-size:8px}
+.phone-exp .exp-form{grid-template-columns:1fr}
+.phone-exp .exp-form input,.phone-exp .exp-form select{font-size:7.5px;padding:4px 5px}
+.phone-exp .exp-row,.phone-exp .exp-item{font-size:7.2px;padding:4px 5px}
+
 /* Hero device duo */
 .device-hero{position:relative;display:flex;align-items:flex-end;gap:20px}
 .device-hero .browser{
@@ -480,6 +627,73 @@ footer a:hover{color:var(--teal)}
 }
 .mobile-label::before,.mobile-label::after{
   content:"";flex:1;max-width:100px;height:1px;background:var(--card-border);
+}
+
+/* App download cards */
+.stores{
+  max-width:980px;
+  margin:0 auto;
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:18px;
+}
+.store-card{
+  background:rgba(12,18,35,.88);
+  border:1px solid rgba(123,142,255,.3);
+  border-radius:18px;
+  padding:26px 24px;
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+  min-height:244px;
+  position:relative;
+  overflow:hidden;
+  transition:transform .3s var(--ease),border-color .3s var(--ease),background .3s var(--ease);
+}
+.store-card::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:radial-gradient(580px 220px at 10% 0%,rgba(108,129,255,.18),transparent 62%);
+  pointer-events:none;
+}
+.store-card:hover{
+  transform:translateY(-4px);
+  border-color:#9AA8FF;
+  background:rgba(14,21,40,.95);
+}
+.store-card h3{
+  font-size:39px;
+  line-height:1.02;
+  letter-spacing:-.01em;
+  font-family:'Syne',sans-serif;
+  margin-top:2px;
+}
+.store-card p{color:#A0ABC7;font-size:15px;line-height:1.6;max-width:36ch}
+.store-card .btn{margin-top:auto;width:max-content}
+
+.store-tag{
+  width:max-content;
+  font-size:11.5px;
+  font-weight:700;
+  letter-spacing:.08em;
+  text-transform:uppercase;
+  border-radius:999px;
+  padding:6px 11px;
+  border:1px solid rgba(154,168,255,.36);
+  color:#D8E0FF;
+  background:rgba(108,129,255,.12);
+}
+
+.stores .store-card:first-child .store-tag{
+  border-color:rgba(109,223,176,.42);
+  color:#A9F3D2;
+  background:rgba(45,212,191,.13);
+}
+
+@media (max-width:860px){
+  .stores{grid-template-columns:1fr}
+  .store-card h3{font-size:34px}
 }
 
 
@@ -639,6 +853,172 @@ h1 .gword{
 .reveal{opacity:0;transform:translateY(26px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
 .reveal.in{opacity:1;transform:none}
 
+/* ---------- State-of-sites report override ---------- */
+:root{
+  --bg:#05070D;
+  --bg-soft:#0A0F1C;
+  --card:#0C1223;
+  --card-border:rgba(123,142,255,.28);
+  --ink:#F6F7FB;
+  --mut:#A0ABC7;
+  --blue:#6C81FF;
+  --blue-soft:#9AA8FF;
+  --teal:#6C81FF;
+  --grad:linear-gradient(120deg,#6C81FF 0%,#9AA8FF 100%);
+}
+
+body{background:radial-gradient(1200px 700px at 70% -10%,rgba(88,108,255,.14),transparent 62%),var(--bg);color:var(--ink)}
+::selection{background:rgba(108,129,255,.35)}
+.glow{display:none}
+.grid-bg{
+  display:block;
+  background-image:linear-gradient(rgba(154,168,255,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(154,168,255,.06) 1px,transparent 1px);
+  background-size:64px 64px;
+  mask-image:linear-gradient(to bottom,#000 0%,rgba(0,0,0,.38) 60%,transparent 100%);
+}
+
+nav{
+  background:rgba(5,7,13,.8);
+  border-bottom:1px solid rgba(154,168,255,.2);
+}
+.brand span{color:#FFFFFF}
+.nav-links a{color:#A5B1D2}
+.nav-links a:hover{color:#FFFFFF}
+.nav-links a::after{background:#8D9DFF}
+.nav-cta{
+  background:#FFFFFF;
+  color:#0A1020;
+  border-radius:999px;
+  border:1px solid #E8ECFF;
+  box-shadow:none;
+}
+.nav-cta:hover{background:#EEF2FF;box-shadow:none}
+
+.hero{
+  grid-template-columns:1fr;
+  max-width:1080px;
+  text-align:center;
+  padding-top:108px;
+  padding-bottom:86px;
+  border-bottom:1px solid rgba(154,168,255,.16);
+}
+.hero > div:first-child{display:flex;flex-direction:column;align-items:center}
+.hero .cta-row{justify-content:center}
+
+.eyebrow{color:#B5C0E8;letter-spacing:.16em}
+.eyebrow::before{background:#8D9DFF}
+h1{
+  text-transform:uppercase;
+  letter-spacing:.01em;
+  font-size:clamp(38px,6vw,82px);
+  line-height:1.02;
+  max-width:980px;
+  margin-bottom:24px;
+}
+h1 .gword{background:none;color:#9FB0FF}
+.hero p.sub{max-width:780px;color:#A6B2D2}
+.hero-note{color:#8F9CC3}
+
+.btn{border-radius:999px;padding:13px 24px;font-weight:600}
+.btn.primary{background:#FFFFFF;color:#0A1020;border:1px solid #E8ECFF;box-shadow:none}
+.btn.primary:hover{background:#EEF2FF;box-shadow:none;transform:translateY(-2px)}
+.btn.ghost{background:transparent;color:#D5DDF7;border:1.5px solid rgba(141,157,255,.45)}
+.btn.ghost:hover{background:rgba(108,129,255,.08);border-color:#9AA8FF;color:#FFFFFF}
+
+section{
+  max-width:1200px;
+  padding-top:98px;
+  padding-bottom:98px;
+  border-bottom:1px solid rgba(154,168,255,.12);
+}
+.sec-head{margin-bottom:60px}
+h2{text-transform:uppercase;letter-spacing:.05em;font-size:clamp(28px,4vw,46px)}
+.sec-head p{color:#9BA7CA}
+
+.mock-card,.kpi,.mrow,.feat,.plan,.who-card,.faq details,.cta-final,.ticket{
+  background:rgba(12,18,35,.86);
+  border:1px solid rgba(123,142,255,.28);
+  box-shadow:none;
+}
+
+.features{grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
+.feat{border-radius:18px;padding:30px 24px}
+.feat::before{opacity:.4}
+.feat .ico{background:rgba(108,129,255,.16);color:#A9B6FF}
+.feat:hover h3{color:#E7ECFF}
+.feat p,.plan .pdesc,.who-card p,.faq .fa,.form-note,.char-count,.support-intro,.ticket .meta{color:#9CA8CC}
+
+#how{
+  background:transparent;
+  border:0;
+  border-radius:0;
+  padding:0;
+}
+#how .sec-head{margin-bottom:32px}
+#how .steps{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+#how .step{
+  position:relative;
+  background:rgba(12,18,35,.9);
+  border:1px solid rgba(123,142,255,.3);
+  border-radius:20px;
+  padding:28px 24px 24px;
+  min-height:250px;
+}
+#how .step::before{
+  font-size:56px;
+  line-height:1;
+  color:rgba(154,168,255,.86);
+  margin-bottom:16px;
+}
+#how .step h3{font-size:19px;color:#F2F5FF;margin-bottom:12px}
+#how .step p{font-size:14.5px;line-height:1.68;color:#A2AED0}
+#how .step .stime{margin-top:16px;color:#DCE4FF;background:rgba(108,129,255,.13);border-color:rgba(154,168,255,.3)}
+
+.who,.pricing{gap:20px}
+.plan.featured{background:rgba(18,26,48,.95);border-color:rgba(154,168,255,.5)}
+.plan.featured::before{display:none}
+.plan .price{letter-spacing:.01em}
+.plan li::before{color:#9AA8FF}
+.pop{background:#8D9DFF;color:#0B1020}
+
+.faq details[open]{background:rgba(16,23,44,.94);border-color:#9AA8FF}
+.faq summary::after{color:#9AA8FF}
+
+.cta-final{background:rgba(10,16,31,.95)}
+.wl-form input,.wl-form textarea,.admin-auth input{
+  background:rgba(255,255,255,.03);
+  color:#F6F7FB;
+  border:1.5px solid rgba(123,142,255,.34);
+}
+.wl-form input::placeholder,.wl-form textarea::placeholder{color:#8390B8}
+.wl-form input:focus,.wl-form textarea:focus{border-color:#9AA8FF;box-shadow:0 0 0 4px rgba(108,129,255,.2)}
+
+.admin-panel{background:rgba(8,13,26,.92);border:1px dashed rgba(154,168,255,.46)}
+.badge.new{background:rgba(108,129,255,.22);color:#9FB0FF}
+.badge.answered{background:rgba(154,168,255,.24);color:#D8E0FF}
+
+footer{border-top:1px solid rgba(154,168,255,.2);color:#8F9CC3}
+footer a{color:#AFC0FF}
+
+.phone{
+  background:#0A1021;
+  border-color:#1A2548;
+  box-shadow:0 24px 56px rgba(0,0,0,.45),inset 0 0 0 1px rgba(154,168,255,.2);
+}
+.phone::before{background:#050912}
+.browser{
+  background:#0B1224;
+  border-color:#1A2548;
+  box-shadow:0 22px 48px rgba(0,0,0,.42),inset 0 0 0 1px rgba(154,168,255,.16);
+}
+.browser-bar{background:#0F1730;border-bottom:1px solid rgba(154,168,255,.2)}
+
+@media (max-width:860px){
+  #how .steps{grid-template-columns:1fr}
+  h1{font-size:clamp(34px,9vw,54px)}
+}
+
+
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation:none!important;transition:none!important}
   .reveal{opacity:1;transform:none}
@@ -658,6 +1038,7 @@ h1 .gword{
   .phone-mini{width:112px;border-width:5px;border-radius:24px}
   .phone-mini::before{width:44px;height:10px}
   .phone-mini .pscreen{font-size:7px;padding:20px 7px 9px}
+  .support-intro{max-width:92%;text-wrap:balance}
 }
 </style>
 </head>
@@ -935,6 +1316,33 @@ h1 .gword{
             <div class="brow"><div class="bbar" style="background:#3B82F6"></div><div><b>Kitnet 04 · Aluguel — Jul/2026</b><small>Vence 10/07 · João Silva</small></div><span class="pbadge g">Pago</span></div>
             <div class="brow"><div class="bbar" style="background:#8B5CF6"></div><div><b>Mesa 12 — 14:00–18:00</b><small>Sarah Miller</small></div><span class="pbadge b">Próxima</span></div>
             <div class="brow"><div class="bbar" style="background:#F87171"></div><div><b>Casa 134 · Aluguel — Jul/2026</b><small>Vence 04/07 · Maria Costa</small></div><span class="pbadge b">Pendente</span></div>
+
+            <div class="exp-widget" id="webExpenseWidget">
+              <div class="exp-head">
+                <b>Despesas por sala</b>
+                <button type="button" class="exp-toggle" id="webExpenseToggle">Nova despesa</button>
+              </div>
+
+              <form id="webExpenseForm" class="exp-form is-hidden">
+                <select id="webExpenseRoom" required>
+                  <option value="">Sala</option>
+                  <option>Sala de Reunião A</option>
+                  <option>Sala de Reunião B</option>
+                  <option>Sala de Podcast</option>
+                </select>
+                <input id="webExpenseAmount" type="number" min="0.01" step="0.01" required placeholder="Valor (R$)">
+                <input id="webExpenseDescription" class="full" type="text" maxlength="80" required placeholder="Descrição da despesa">
+                <button type="submit">Adicionar</button>
+              </form>
+
+              <p class="exp-msg" id="webExpenseMessage"></p>
+
+              <div class="exp-totals" id="webExpenseTotals">
+                <p class="exp-empty">Sem despesas registradas ainda.</p>
+              </div>
+
+              <div class="exp-list" id="webExpenseList"></div>
+            </div>
           </div>
         </div>
       </div>
@@ -1001,6 +1409,32 @@ h1 .gword{
         </div>
         <div class="prow"><div class="pbar" style="background:#3B82F6"></div><div><b>Aluguel — Kitnet 04 — 07/2026</b><small>Vence 10/07 · João</small></div><span class="pbadge g">Pago</span></div>
         <div class="prow"><div class="pbar" style="background:#2DD4BF"></div><div><b>Aluguel — Casa 134 — 07/2026</b><small>Vence 04/07 · Maria</small></div><span class="pbadge b">Pendente</span></div>
+
+        <div class="exp-widget phone-exp" id="mobileExpenseWidget">
+          <div class="exp-head">
+            <b>Despesas por sala</b>
+            <button type="button" class="exp-toggle" id="mobileExpenseToggle">Nova</button>
+          </div>
+
+          <form id="mobileExpenseForm" class="exp-form is-hidden">
+            <select id="mobileExpenseRoom" required>
+              <option value="">Sala</option>
+              <option>Sala A</option>
+              <option>Sala B</option>
+              <option>Sala Podcast</option>
+            </select>
+            <input id="mobileExpenseAmount" type="number" min="0.01" step="0.01" required placeholder="Valor (R$)">
+            <input id="mobileExpenseDescription" class="full" type="text" maxlength="50" required placeholder="Descricao">
+            <button type="submit">Adicionar</button>
+          </form>
+
+          <p class="exp-msg" id="mobileExpenseMessage"></p>
+          <div class="exp-totals" id="mobileExpenseTotals">
+            <p class="exp-empty">Sem despesas ainda.</p>
+          </div>
+          <div class="exp-list" id="mobileExpenseList"></div>
+        </div>
+
         <div class="ptabs">
           <span class="ptab"><i></i>Painel</span>
           <span class="ptab"><i></i>Membros</span>
@@ -1072,7 +1506,7 @@ h1 .gword{
         <li>Faturas automáticas</li>
         <li>Lembretes por email</li>
       </ul>
-      <a href="#waitlist" class="btn ghost">Começar grátis</a>
+      <a href="https://lokaro.vercel.app/" target="_blank" rel="noopener" class="btn ghost">Começar grátis</a>
     </div>
     <div class="plan featured reveal spot">
       <div class="pop">MAIS POPULAR</div>
@@ -1139,12 +1573,32 @@ h1 .gword{
 <section id="waitlist">
   <div class="cta-final reveal">
     <h2>Seu espaço, finalmente sob controle</h2>
-    <p style="color:var(--mut);max-width:460px;margin:10px auto 0">Entre na lista de acesso antecipado e seja o primeiro a receber o Lokaro no Android e iOS.</p>
-    <form class="wl-form" onsubmit="event.preventDefault();this.innerHTML='<p style=\'color:var(--teal);font-weight:600\'>Você está na lista! 🎉</p>'">
-      <input type="email" required placeholder="voce@seuespaco.com.br">
-      <button class="btn primary" type="submit">Quero acesso antecipado</button>
+    <p class="support-intro">Envie sua duvida para o suporte. Nossa equipe responde exclusivamente por e-mail.</p>
+    <form class="wl-form" id="supportForm">
+      <div class="full-line">
+        <input id="supportEmail" type="email" required placeholder="voce@seuespaco.com.br" autocomplete="email">
+      </div>
+      <div class="full-line">
+        <textarea id="supportMessage" required maxlength="500" placeholder="Descreva sua dúvida ou pedido de ajuda (máximo de 500 caracteres)."></textarea>
+      </div>
+      <div class="full-line form-row">
+        <button class="btn primary" id="supportSubmit" type="submit">Enviar mensagem ao suporte</button>
+        <span class="char-count" id="supportCount">0/500</span>
+      </div>
     </form>
-    <p class="form-note">Sem spam. Um email só, quando lançarmos.</p>
+    <p class="form-status" id="supportStatus" aria-live="polite"></p>
+    <p class="form-note">Aviso: toda resposta do suporte sera enviada para o e-mail informado no formulario.</p>
+
+    <div class="admin-panel" id="adminSupportPanel" hidden>
+      <h3>Painel de suporte (admin)</h3>
+      <p class="form-note" style="margin-top:0">Area oculta. Para abrir: digite LOKAROADMIN no teclado.</p>
+      <div class="admin-auth">
+        <input id="adminSupportKey" type="password" placeholder="Chave admin (SUPPORT_ADMIN_KEY)">
+        <button class="btn ghost" id="adminLoadTickets" type="button">Carregar perguntas</button>
+      </div>
+      <p class="form-status" id="adminSupportStatus" aria-live="polite"></p>
+      <div class="admin-list" id="adminSupportList"></div>
+    </div>
   </div>
 </section>
 
@@ -1238,6 +1692,316 @@ h1 .gword{
   document.querySelectorAll('.plan').forEach(plan => {
     plan.querySelectorAll('li').forEach((li, i) => li.style.setProperty('--li', i));
   });
+
+  // ---- Despesas por sala (mock do app web/financeiro) ----
+  (function(){
+    function initExpenseWidget(config) {
+      const widget = document.getElementById(config.widgetId);
+      if (!widget) return;
+
+      const form = document.getElementById(config.formId);
+      const toggleBtn = document.getElementById(config.toggleId);
+      const roomInput = document.getElementById(config.roomId);
+      const amountInput = document.getElementById(config.amountId);
+      const descriptionInput = document.getElementById(config.descriptionId);
+      const totalsEl = document.getElementById(config.totalsId);
+      const listEl = document.getElementById(config.listId);
+      const msgEl = document.getElementById(config.messageId);
+
+      const totals = {};
+      const lastExpenses = [];
+
+      function toCurrency(value) {
+        return value.toLocaleString('pt-BR', {
+          style: 'currency',
+          currency: 'BRL'
+        });
+      }
+
+      function renderTotals() {
+        const rooms = Object.entries(totals).sort((a, b) => b[1] - a[1]);
+
+        if (!rooms.length) {
+          totalsEl.innerHTML = '<p class="exp-empty">Sem despesas registradas ainda.</p>';
+          return;
+        }
+
+        totalsEl.innerHTML = rooms
+          .map(([room, total]) => `
+            <div class="exp-row">
+              <span>${room}</span>
+              <b>${toCurrency(total)}</b>
+            </div>
+          `)
+          .join('');
+      }
+
+      function renderList() {
+        if (!lastExpenses.length) {
+          listEl.innerHTML = '';
+          return;
+        }
+
+        listEl.innerHTML = lastExpenses
+          .map((item) => `
+            <div class="exp-item">
+              <small>${item.room} · ${item.description}</small>
+              <b>${toCurrency(item.amount)}</b>
+            </div>
+          `)
+          .join('');
+      }
+
+      toggleBtn.addEventListener('click', () => {
+        form.classList.toggle('is-hidden');
+        msgEl.textContent = form.classList.contains('is-hidden') ? '' : 'Preencha valor e descricao da despesa.';
+      });
+
+      form.addEventListener('submit', (event) => {
+        event.preventDefault();
+
+        const room = roomInput.value.trim();
+        const description = descriptionInput.value.trim();
+        const amount = Number(amountInput.value);
+
+        if (!room || !description || !Number.isFinite(amount) || amount <= 0) {
+          msgEl.textContent = 'Informe sala, valor valido e descricao.';
+          msgEl.style.color = '#FCA5A5';
+          return;
+        }
+
+        totals[room] = (totals[room] || 0) + amount;
+        lastExpenses.unshift({ room, description, amount });
+        if (lastExpenses.length > 4) lastExpenses.pop();
+
+        renderTotals();
+        renderList();
+
+        msgEl.textContent = `Despesa adicionada em ${room}. Total acumulado atualizado.`;
+        msgEl.style.color = '#93C5FD';
+
+        form.reset();
+        roomInput.focus();
+      });
+
+      renderTotals();
+      renderList();
+    }
+
+    initExpenseWidget({
+      widgetId: 'webExpenseWidget',
+      formId: 'webExpenseForm',
+      toggleId: 'webExpenseToggle',
+      roomId: 'webExpenseRoom',
+      amountId: 'webExpenseAmount',
+      descriptionId: 'webExpenseDescription',
+      totalsId: 'webExpenseTotals',
+      listId: 'webExpenseList',
+      messageId: 'webExpenseMessage'
+    });
+
+    initExpenseWidget({
+      widgetId: 'mobileExpenseWidget',
+      formId: 'mobileExpenseForm',
+      toggleId: 'mobileExpenseToggle',
+      roomId: 'mobileExpenseRoom',
+      amountId: 'mobileExpenseAmount',
+      descriptionId: 'mobileExpenseDescription',
+      totalsId: 'mobileExpenseTotals',
+      listId: 'mobileExpenseList',
+      messageId: 'mobileExpenseMessage'
+    });
+  })();
+
+  // ---- Suporte por email + painel admin oculto ----
+  (function(){
+    const form = document.getElementById('supportForm');
+    const emailInput = document.getElementById('supportEmail');
+    const messageInput = document.getElementById('supportMessage');
+    const submitBtn = document.getElementById('supportSubmit');
+    const statusEl = document.getElementById('supportStatus');
+    const countEl = document.getElementById('supportCount');
+
+    const adminPanel = document.getElementById('adminSupportPanel');
+    const adminKeyInput = document.getElementById('adminSupportKey');
+    const adminLoadBtn = document.getElementById('adminLoadTickets');
+    const adminStatus = document.getElementById('adminSupportStatus');
+    const adminList = document.getElementById('adminSupportList');
+
+    if (!form || !emailInput || !messageInput || !submitBtn || !statusEl || !countEl) return;
+
+    function setStatus(msg, ok) {
+      statusEl.textContent = msg;
+      statusEl.style.color = ok ? 'var(--teal)' : '#FCA5A5';
+    }
+
+    function updateCount() {
+      countEl.textContent = `${messageInput.value.length}/500`;
+    }
+
+    function escapeHtml(text) {
+      return String(text)
+        .replaceAll('&', '&amp;')
+        .replaceAll('<', '&lt;')
+        .replaceAll('>', '&gt;');
+    }
+
+    function ticketCard(ticket) {
+      const date = new Date(ticket.created_at || Date.now()).toLocaleString('pt-BR');
+      const badgeClass = ticket.status === 'answered' ? 'answered' : 'new';
+      const badgeText = ticket.status === 'answered' ? 'RESPONDIDO' : 'NOVO';
+      return `
+        <article class="ticket" data-id="${ticket.id}">
+          <div class="meta">
+            <strong>${escapeHtml(ticket.email || '')}</strong>
+            <span>${date}</span>
+            <span class="badge ${badgeClass}">${badgeText}</span>
+          </div>
+          <p>${escapeHtml(ticket.message || '')}</p>
+          <div class="actions">
+            <a class="btn ghost" href="mailto:${encodeURIComponent(ticket.email || '')}?subject=Resposta%20do%20suporte%20Lokaro" target="_blank" rel="noopener">Responder por e-mail</a>
+            ${ticket.status === 'answered' ? '' : '<button class="btn ghost mark-answered" type="button">Marcar como respondido</button>'}
+          </div>
+        </article>
+      `;
+    }
+
+    async function submitSupport(event) {
+      event.preventDefault();
+      const email = emailInput.value.trim();
+      const message = messageInput.value.trim();
+
+      if (!email || !message) {
+        setStatus('Preencha seu e-mail e a mensagem.', false);
+        return;
+      }
+      if (message.length > 500) {
+        setStatus('A mensagem deve ter no maximo 500 caracteres.', false);
+        return;
+      }
+
+      submitBtn.disabled = true;
+      setStatus('Enviando sua mensagem...', true);
+
+      try {
+        const response = await fetch('/api/support-requests', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            email,
+            message,
+            source_page: '/br'
+          })
+        });
+
+        const data = await response.json();
+        if (!response.ok || !data.ok) {
+          throw new Error(data.error || 'Falha ao enviar sua mensagem.');
+        }
+
+        form.reset();
+        updateCount();
+        setStatus('Mensagem recebida. O suporte vai responder no seu e-mail.', true);
+      } catch (error) {
+        setStatus(error.message || 'Nao foi possivel enviar agora.', false);
+      } finally {
+        submitBtn.disabled = false;
+      }
+    }
+
+    async function loadTickets() {
+      const key = (adminKeyInput?.value || '').trim();
+      if (!key) {
+        adminStatus.textContent = 'Informe a chave admin para carregar as mensagens.';
+        adminStatus.style.color = '#FCA5A5';
+        return;
+      }
+
+      adminLoadBtn.disabled = true;
+      adminStatus.textContent = 'Carregando perguntas...';
+      adminStatus.style.color = 'var(--teal)';
+
+      try {
+        const response = await fetch('/api/support-requests', {
+          method: 'GET',
+          headers: {
+            'x-admin-key': key
+          }
+        });
+        const data = await response.json();
+        if (!response.ok || !data.ok) {
+          throw new Error(data.error || 'Falha ao carregar perguntas.');
+        }
+
+        if (!Array.isArray(data.tickets) || !data.tickets.length) {
+          adminList.innerHTML = '<p class="form-note">Nenhuma pergunta registrada ainda.</p>';
+        } else {
+          adminList.innerHTML = data.tickets.map(ticketCard).join('');
+        }
+        adminStatus.textContent = `Total carregado: ${data.tickets.length}`;
+      } catch (error) {
+        adminStatus.textContent = error.message || 'Erro ao carregar o painel.';
+        adminStatus.style.color = '#FCA5A5';
+      } finally {
+        adminLoadBtn.disabled = false;
+      }
+    }
+
+    async function markAnswered(ticketId) {
+      const key = (adminKeyInput?.value || '').trim();
+      if (!key) {
+        adminStatus.textContent = 'Informe a chave admin antes de atualizar status.';
+        adminStatus.style.color = '#FCA5A5';
+        return;
+      }
+
+      try {
+        const response = await fetch('/api/support-requests', {
+          method: 'PATCH',
+          headers: {
+            'Content-Type': 'application/json',
+            'x-admin-key': key
+          },
+          body: JSON.stringify({
+            id: Number(ticketId),
+            status: 'answered'
+          })
+        });
+        const data = await response.json();
+        if (!response.ok || !data.ok) {
+          throw new Error(data.error || 'Nao foi possivel atualizar o status.');
+        }
+        await loadTickets();
+      } catch (error) {
+        adminStatus.textContent = error.message || 'Erro ao marcar como respondido.';
+        adminStatus.style.color = '#FCA5A5';
+      }
+    }
+
+    let unlockBuffer = '';
+    addEventListener('keydown', (event) => {
+      if (event.key.length !== 1) return;
+      unlockBuffer = (unlockBuffer + event.key.toUpperCase()).slice(-20);
+      if (unlockBuffer.includes('LOKAROADMIN')) {
+        adminPanel.hidden = false;
+        adminStatus.textContent = 'Painel admin liberado.';
+        adminStatus.style.color = 'var(--teal)';
+      }
+    });
+
+    form.addEventListener('submit', submitSupport);
+    messageInput.addEventListener('input', updateCount);
+    updateCount();
+
+    adminLoadBtn?.addEventListener('click', loadTickets);
+    adminList?.addEventListener('click', (event) => {
+      const button = event.target.closest('.mark-answered');
+      if (!button) return;
+      const article = button.closest('.ticket');
+      if (!article) return;
+      markAnswered(article.dataset.id);
+    });
+  })();
 
 
   // ---- Live demo timeline ----

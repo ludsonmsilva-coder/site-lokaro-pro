@@ -81,6 +81,99 @@
     });
   });
 
+  // Finance mock: expenses by room
+  (function(){
+    const widget = document.getElementById('financeExpenseWidget');
+    if (!widget) return;
+
+    const form = document.getElementById('financeExpenseForm');
+    const toggleBtn = document.getElementById('financeExpenseToggle');
+    const roomInput = document.getElementById('financeExpenseRoom');
+    const amountInput = document.getElementById('financeExpenseAmount');
+    const descriptionInput = document.getElementById('financeExpenseDescription');
+    const totalsEl = document.getElementById('financeExpenseTotals');
+    const listEl = document.getElementById('financeExpenseList');
+    const msgEl = document.getElementById('financeExpenseMessage');
+
+    const totals = {};
+    const lastExpenses = [];
+
+    function toCurrency(value) {
+      return value.toLocaleString('en-US', {
+        style: 'currency',
+        currency: 'USD'
+      });
+    }
+
+    function renderTotals() {
+      const rooms = Object.entries(totals).sort((a, b) => b[1] - a[1]);
+      if (!rooms.length) {
+        totalsEl.innerHTML = '<p class="exp-empty">No expenses yet.</p>';
+        return;
+      }
+
+      totalsEl.innerHTML = rooms
+        .map(([room, total]) => `
+          <div class="exp-row">
+            <span>${room}</span>
+            <b>${toCurrency(total)}</b>
+          </div>
+        `)
+        .join('');
+    }
+
+    function renderList() {
+      if (!lastExpenses.length) {
+        listEl.innerHTML = '';
+        return;
+      }
+
+      listEl.innerHTML = lastExpenses
+        .map((item) => `
+          <div class="exp-item">
+            <small>${item.room} · ${item.description}</small>
+            <b>${toCurrency(item.amount)}</b>
+          </div>
+        `)
+        .join('');
+    }
+
+    toggleBtn.addEventListener('click', () => {
+      form.classList.toggle('is-hidden');
+      msgEl.textContent = form.classList.contains('is-hidden') ? '' : 'Fill amount and description.';
+    });
+
+    form.addEventListener('submit', (event) => {
+      event.preventDefault();
+
+      const room = roomInput.value.trim();
+      const description = descriptionInput.value.trim();
+      const amount = Number(amountInput.value);
+
+      if (!room || !description || !Number.isFinite(amount) || amount <= 0) {
+        msgEl.textContent = 'Please fill room, valid amount and description.';
+        msgEl.style.color = '#FCA5A5';
+        return;
+      }
+
+      totals[room] = (totals[room] || 0) + amount;
+      lastExpenses.unshift({ room, description, amount });
+      if (lastExpenses.length > 4) lastExpenses.pop();
+
+      renderTotals();
+      renderList();
+
+      msgEl.textContent = `Expense added to ${room}. Room total updated.`;
+      msgEl.style.color = '#93C5FD';
+
+      form.reset();
+      roomInput.focus();
+    });
+
+    renderTotals();
+    renderList();
+  })();
+
 
   // ---- Live demo timeline ----
   (function(){

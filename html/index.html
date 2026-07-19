@@ -92,6 +92,33 @@
             </div>
             <div class="prow"><div class="pbar" style="background:#3B82F6"></div><div><b>Rent — Studio 04 — 07/2026</b><small>Due 07/10 · João</small></div><span class="pbadge g">Paid</span></div>
             <div class="prow"><div class="pbar" style="background:#2DD4BF"></div><div><b>Rent — House 134 — 07/2026</b><small>Due 07/04 · Maria</small></div><span class="pbadge b">Pending</span></div>
+
+            <div class="exp-widget" id="financeExpenseWidget">
+              <div class="exp-head">
+                <b>Expenses by room</b>
+                <button type="button" class="exp-toggle" id="financeExpenseToggle">New expense</button>
+              </div>
+
+              <form id="financeExpenseForm" class="exp-form is-hidden">
+                <select id="financeExpenseRoom" required>
+                  <option value="">Room</option>
+                  <option>Meeting Room A</option>
+                  <option>Meeting Room B</option>
+                  <option>Podcast Room</option>
+                </select>
+                <input id="financeExpenseAmount" type="number" min="0.01" step="0.01" required placeholder="Amount ($)">
+                <input id="financeExpenseDescription" class="full" type="text" maxlength="70" required placeholder="Expense description">
+                <button type="submit">Add</button>
+              </form>
+
+              <p class="exp-msg" id="financeExpenseMessage"></p>
+
+              <div class="exp-totals" id="financeExpenseTotals">
+                <p class="exp-empty">No expenses yet.</p>
+              </div>
+
+              <div class="exp-list" id="financeExpenseList"></div>
+            </div>
           </div>
 
           <div class="pview" data-view="settings">

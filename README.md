@@ -34,11 +34,16 @@ Este projeto agora possui endpoint de webhook em `api/kiwify-webhook.js` para at
 
 Execute o SQL de `supabase/billing_access.sql` no SQL Editor do Supabase.
 
+Para o formulario de suporte da pagina em portugues, execute tambem:
+
+- `supabase/support_requests.sql`
+
 ### 2) Configurar variaveis de ambiente no deploy (Vercel)
 
 - `SUPABASE_URL` = URL do projeto Supabase
 - `SUPABASE_SERVICE_ROLE_KEY` = chave service role do Supabase
 - `KIWIFY_WEBHOOK_SECRET` = segredo usado para validar webhook (opcional, mas recomendado)
+- `SUPPORT_ADMIN_KEY` = chave para abrir/listar o painel admin de suporte
 
 ### 3) Configurar webhook na Kiwify
 
@@ -127,3 +132,76 @@ Se seu app web roda sem bundler, use `js/plan-gating-runtime.js`.
 ```
 
 O script aplica bloqueio automaticamente com base no plano salvo em `billing_access`.
+
+## Checklist rapido (antes da primeira assinatura real)
+
+### 1) Banco no Supabase
+
+1. Execute `supabase/billing_access.sql` no SQL Editor.
+2. Confirme se a tabela existe: `billing_access`.
+
+### 2) Variaveis no deploy (Vercel)
+
+Configure no projeto:
+
+- `SUPABASE_URL`
+- `SUPABASE_SERVICE_ROLE_KEY`
+- `KIWIFY_WEBHOOK_SECRET`
+
+Depois, redeploy.
+
+### 3) Webhook na Kiwify
+
+1. URL: `https://SEU_DOMINIO/api/kiwify-webhook`
+2. Header: `x-webhook-secret` com o mesmo valor de `KIWIFY_WEBHOOK_SECRET`.
+3. Eventos: pagamento aprovado/compra concluida.
+
+### 4) Teste de ponta a ponta (3 minutos)
+
+1. Faça uma compra teste do plano `R$ 49,00` com email seu.
+2. No Supabase, rode:
+
+```sql
+select email, plan, status, unlocked_features, updated_at
+from public.billing_access
+order by updated_at desc
+limit 10;
+```
+
+3. Resultado esperado para `R$ 49,00`:
+
+- `plan = starter`
+- `status = active`
+- `unlocked_features` contendo recursos do Starter
+
+4. Repita com `R$ 99,00` e confirme `plan = pro`.
+
+### 5) Se nao liberar automatico
+
+Verifique nesta ordem:
+
+1. URL de webhook correta
+2. segredo do header igual ao ambiente
+3. status do evento enviado pela Kiwify (paid/approved/completed)
+4. env vars no deploy correto
+5. app lendo `billing_access` pelo email do usuario autenticado
+
+## Suporte por email (pagina BR)
+
+`br.html` agora usa um formulario de suporte com:
+
+- email obrigatorio
+- mensagem obrigatoria (maximo 500 caracteres)
+- aviso explicito de que as respostas sao enviadas somente por email
+
+API usada pelo formulario/painel admin:
+
+- `POST /api/support-requests` cria pergunta de suporte
+- `GET /api/support-requests` lista perguntas (exige header `x-admin-key`)
+- `PATCH /api/support-requests` marca pergunta como respondida (exige header `x-admin-key`)
+
+No painel admin oculto da propria pagina, a equipe consegue:
+
+- listar perguntas enviadas
+- abrir resposta via `mailto:` para o email do cliente
+- marcar ticket como `answered`
