@@ -4,11 +4,15 @@ create table if not exists public.billing_access (
   plan text not null default 'free' check (plan in ('free', 'starter', 'pro')),
   status text not null default 'inactive' check (status in ('inactive', 'pending', 'active', 'cancelled')),
   provider text not null default 'kiwify',
+  cancelled_at timestamptz,
   unlocked_features jsonb not null default '[]'::jsonb,
   last_event jsonb,
   created_at timestamptz not null default now(),
   updated_at timestamptz not null default now()
 );
+
+alter table if exists public.billing_access
+  add column if not exists cancelled_at timestamptz;
 
 create or replace function public.set_updated_at()
 returns trigger

@@ -43,6 +43,31 @@ function isApproved(payload) {
   return ['paid', 'approved', 'completed', 'authorized'].includes(state);
 }
 
+function isCancelled(payload) {
+  const status = (
+    payload?.order_status ||
+    payload?.payment_status ||
+    payload?.status ||
+    payload?.OrderStatus ||
+    payload?.event ||
+    payload?.event_name ||
+    payload?.type ||
+    ''
+  )
+    .toString()
+    .toLowerCase();
+
+  return [
+    'cancelled',
+    'canceled',
+    'subscription_cancelled',
+    'subscription_canceled',
+    'refunded',
+    'refund',
+    'chargeback'
+  ].some((token) => status.includes(token));
+}
+
 function resolvePlan(payload) {
   const productName = (
     payload?.Product?.name ||
@@ -103,13 +128,16 @@ async function upsertCustomerAccess(payload) {
   }
 
   const { plan, unlocked_features } = resolvePlan(payload);
+  const cancelled = isCancelled(payload);
+  const approved = isApproved(payload);
 
   const row = {
     email,
-    plan,
-    status: isApproved(payload) ? 'active' : 'pending',
+    plan: cancelled ? 'free' : plan,
+    status: cancelled ? 'cancelled' : approved ? 'active' : 'pending',
     provider: 'kiwify',
-    unlocked_features,
+    unlocked_features: cancelled ? ['units_up_to_2'] : unlocked_features,
+    cancelled_at: cancelled ? new Date().toISOString() : null,
     last_event: payload,
     updated_at: new Date().toISOString()
   };
