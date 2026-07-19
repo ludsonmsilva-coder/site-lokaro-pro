@@ -4,11 +4,11 @@ function getSupabaseConfig() {
   const supabaseUrl = process.env.SUPABASE_URL;
   const serviceRole = process.env.SUPABASE_SERVICE_ROLE_KEY;
 
-  if (!supabaseUrl || !serviceRole) {
-    throw new Error('SUPABASE_URL ou SUPABASE_SERVICE_ROLE_KEY ausentes.');
-  }
-
-  return { supabaseUrl, serviceRole };
+  return {
+    supabaseUrl,
+    serviceRole,
+    isReady: Boolean(supabaseUrl && serviceRole)
+  };
 }
 
 function getAdminSecret() {
@@ -47,7 +47,9 @@ function extractBearerToken(req) {
 }
 
 async function supabaseRequest(path) {
-  const { supabaseUrl, serviceRole } = getSupabaseConfig();
+  const { supabaseUrl, serviceRole, isReady } = getSupabaseConfig();
+  if (!isReady) return [];
+
   const response = await fetch(`${supabaseUrl}/rest/v1/${path}`, {
     method: 'GET',
     headers: {
@@ -88,6 +90,23 @@ export default async function handler(req, res) {
     const payload = verifyToken(token, getAdminSecret());
     if (!payload) {
       return res.status(401).json({ ok: false, error: 'Nao autorizado.' });
+    }
+
+    const { isReady } = getSupabaseConfig();
+    if (!isReady) {
+      return res.status(200).json({
+        ok: true,
+        admin_email: payload.email,
+        warning: 'Configure SUPABASE_URL e SUPABASE_SERVICE_ROLE_KEY no deploy para ver os dados.',
+        stats: {
+          total_users: 0,
+          total_members: 0,
+          total_billing_records: 0,
+          total_support_messages: 0
+        },
+        users: [],
+        support_messages: []
+      });
     }
 
     const [members, billingAccess, supportMessages] = await Promise.all([

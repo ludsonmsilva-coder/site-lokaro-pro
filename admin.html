@@ -303,7 +303,11 @@
         renderStats(data.stats || {});
         renderUsers(data.users || []);
         renderSupport(data.support_messages || []);
-        setStatus(dashStatus, 'Painel atualizado.', 'ok');
+        if (data.warning) {
+          setStatus(dashStatus, data.warning, 'err');
+        } else {
+          setStatus(dashStatus, 'Painel atualizado.', 'ok');
+        }
       } catch (error) {
         clearToken();
         loginCard.classList.remove('hidden');
