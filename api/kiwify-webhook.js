@@ -166,6 +166,16 @@ async function upsertCustomerAccess(payload) {
 
   if (!response.ok) {
     const text = await response.text();
+    const missingBillingTable =
+      response.status === 404 &&
+      (text.includes('PGRST205') || text.includes('billing_access'));
+
+    if (missingBillingTable) {
+      throw new Error(
+        'Tabela public.billing_access ausente no Supabase de producao. Execute supabase/billing_access.sql para liberar o fluxo de compra e cancelamento.'
+      );
+    }
+
     throw new Error(`Erro ao gravar no Supabase: ${response.status} ${text}`);
   }
 
