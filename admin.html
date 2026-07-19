@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lokaro Admin</title>
+  <style>
+    :root {
+      --bg: #0b1220;
+      --card: #111b2f;
+      --ink: #e7eefc;
+      --mut: #9db0d8;
+      --line: #22365f;
+      --primary: #2563eb;
+      --danger: #dc2626;
+      --ok: #16a34a;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      background: var(--bg);
+      color: var(--ink);
+    }
+    .wrap { max-width: 1100px; margin: 0 auto; padding: 24px; }
+    h1 { margin: 0 0 16px; font-size: 28px; }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 16px;
+      margin-bottom: 16px;
+    }
+    .row { display: flex; gap: 10px; flex-wrap: wrap; }
+    input, button {
+      border-radius: 10px;
+      border: 1px solid var(--line);
+      background: #0d1730;
+      color: var(--ink);
+      font-size: 14px;
+      padding: 10px 12px;
+    }
+    input { min-width: 250px; }
+    button {
+      background: var(--primary);
+      border-color: var(--primary);
+      cursor: pointer;
+      font-weight: 600;
+    }
+    button.logout { background: #1f2f54; border-color: #2b4679; }
+    .status { min-height: 20px; margin-top: 10px; color: var(--mut); }
+    .status.err { color: #fca5a5; }
+    .status.ok { color: #86efac; }
+    .stats { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 10px; }
+    .stat { background: #0d1730; border: 1px solid var(--line); border-radius: 10px; padding: 10px; }
+    .stat b { font-size: 20px; display: block; }
+    table { width: 100%; border-collapse: collapse; }
+    th, td { text-align: left; padding: 9px 8px; border-bottom: 1px solid var(--line); font-size: 13px; vertical-align: top; }
+    th { color: var(--mut); font-weight: 600; }
+    .pill {
+      display: inline-block;
+      padding: 2px 8px;
+      border-radius: 999px;
+      font-size: 11px;
+      font-weight: 700;
+      border: 1px solid var(--line);
+      background: #0d1730;
+    }
+    .pill.ok { color: #86efac; border-color: #166534; }
+    .pill.warn { color: #fde68a; border-color: #92400e; }
+    .pill.err { color: #fca5a5; border-color: #7f1d1d; }
+    .hidden { display: none; }
+    .mut { color: var(--mut); }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>Painel Admin Lokaro</h1>
+
+    <section class="card" id="loginCard">
+      <h2 style="margin-top:0">Entrar</h2>
+      <p class="mut">Acesso restrito ao administrador.</p>
+      <div class="row">
+        <input id="adminEmail" type="email" placeholder="Email admin" />
+        <input id="adminPassword" type="password" placeholder="Senha" />
+        <button id="loginBtn" type="button">Entrar</button>
+      </div>
+      <div id="loginStatus" class="status"></div>
+    </section>
+
+    <section class="card hidden" id="dashboardCard">
+      <div class="row" style="justify-content:space-between;align-items:center">
+        <div>
+          <h2 style="margin:0">Visao geral</h2>
+          <p id="adminWho" class="mut" style="margin:6px 0 0"></p>
+        </div>
+        <div class="row">
+          <button id="refreshBtn" type="button">Atualizar</button>
+          <button id="logoutBtn" class="logout" type="button">Sair</button>
+        </div>
+      </div>
+      <div class="stats" id="statsBox" style="margin-top:12px"></div>
+      <div id="dashStatus" class="status"></div>
+    </section>
+
+    <section class="card hidden" id="usersCard">
+      <h2 style="margin-top:0">Emails que usam o sistema</h2>
+      <div style="overflow:auto">
+        <table>
+          <thead>
+            <tr>
+              <th>Email</th>
+              <th>Membro</th>
+              <th>Plano</th>
+              <th>Status billing</th>
+              <th>Msgs suporte</th>
+              <th>Ultima atividade</th>
+            </tr>
+          </thead>
+          <tbody id="usersBody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="card hidden" id="supportCard">
+      <h2 style="margin-top:0">Mensagens enviadas no site</h2>
+      <div style="overflow:auto">
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Email</th>
+              <th>Status</th>
+              <th>Origem</th>
+              <th>Mensagem</th>
+              <th>Data</th>
+            </tr>
+          </thead>
+          <tbody id="supportBody"></tbody>
+        </table>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    const tokenKey = 'lokaro_admin_token';
+
+    const loginCard = document.getElementById('loginCard');
+    const dashboardCard = document.getElementById('dashboardCard');
+    const usersCard = document.getElementById('usersCard');
+    const supportCard = document.getElementById('supportCard');
+
+    const adminEmail = document.getElementById('adminEmail');
+    const adminPassword = document.getElementById('adminPassword');
+    const loginBtn = document.getElementById('loginBtn');
+    const loginStatus = document.getElementById('loginStatus');
+
+    const refreshBtn = document.getElementById('refreshBtn');
+    const logoutBtn = document.getElementById('logoutBtn');
+    const adminWho = document.getElementById('adminWho');
+    const statsBox = document.getElementById('statsBox');
+    const dashStatus = document.getElementById('dashStatus');
+    const usersBody = document.getElementById('usersBody');
+    const supportBody = document.getElementById('supportBody');
+
+    function setStatus(el, msg, tone) {
+      el.textContent = msg || '';
+      el.classList.remove('err', 'ok');
+      if (tone) el.classList.add(tone);
+    }
+
+    function fmtDate(value) {
+      if (!value) return '-';
+      const d = new Date(value);
+      if (Number.isNaN(d.getTime())) return '-';
+      return d.toLocaleString('pt-BR');
+    }
+
+    function readToken() {
+      return localStorage.getItem(tokenKey) || '';
+    }
+
+    function saveToken(token) {
+      localStorage.setItem(tokenKey, token);
+    }
+
+    function clearToken() {
+      localStorage.removeItem(tokenKey);
+    }
+
+    async function doLogin() {
+      setStatus(loginStatus, 'Entrando...', null);
+      try {
+        const response = await fetch('/api/admin-login', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            email: adminEmail.value.trim(),
+            password: adminPassword.value
+          })
+        });
+        const data = await response.json();
+        if (!response.ok || !data.ok) {
+          throw new Error(data.error || 'Falha no login');
+        }
+        saveToken(data.token);
+        setStatus(loginStatus, 'Login realizado com sucesso.', 'ok');
+        await loadDashboard();
+      } catch (error) {
+        setStatus(loginStatus, error.message || 'Erro no login.', 'err');
+      }
+    }
+
+    function billingPill(status) {
+      const s = String(status || '-').toLowerCase();
+      if (s === 'active') return '<span class="pill ok">active</span>';
+      if (s === 'pending') return '<span class="pill warn">pending</span>';
+      if (s === 'cancelled') return '<span class="pill err">cancelled</span>';
+      return '<span class="pill">' + (status || '-') + '</span>';
+    }
+
+    function renderStats(stats) {
+      const items = [
+        ['Total de emails unicos', stats.total_users],
+        ['Membros cadastrados', stats.total_members],
+        ['Registros de billing', stats.total_billing_records],
+        ['Mensagens de suporte', stats.total_support_messages]
+      ];
+      statsBox.innerHTML = items
+        .map(([label, value]) => `<div class="stat"><b>${value || 0}</b><span>${label}</span></div>`)
+        .join('');
+    }
+
+    function renderUsers(users) {
+      if (!Array.isArray(users) || !users.length) {
+        usersBody.innerHTML = '<tr><td colspan="6" class="mut">Nenhum email encontrado.</td></tr>';
+        return;
+      }
+
+      usersBody.innerHTML = users
+        .map((u) => `
+          <tr>
+            <td>${u.email || '-'}</td>
+            <td>${u.member_status || '-'}</td>
+            <td>${u.billing_plan || '-'}</td>
+            <td>${billingPill(u.billing_status)}</td>
+            <td>${u.support_messages_count || 0}</td>
+            <td>${fmtDate(u.last_seen_at)}</td>
+          </tr>
+        `)
+        .join('');
+    }
+
+    function renderSupport(rows) {
+      if (!Array.isArray(rows) || !rows.length) {
+        supportBody.innerHTML = '<tr><td colspan="6" class="mut">Nenhuma mensagem encontrada.</td></tr>';
+        return;
+      }
+
+      supportBody.innerHTML = rows
+        .map((r) => `
+          <tr>
+            <td>${r.id ?? '-'}</td>
+            <td>${r.email || '-'}</td>
+            <td>${billingPill(r.status)}</td>
+            <td>${r.source_page || '-'}</td>
+            <td>${String(r.message || '').slice(0, 220)}</td>
+            <td>${fmtDate(r.created_at)}</td>
+          </tr>
+        `)
+        .join('');
+    }
+
+    async function loadDashboard() {
+      const token = readToken();
+      if (!token) {
+        loginCard.classList.remove('hidden');
+        dashboardCard.classList.add('hidden');
+        usersCard.classList.add('hidden');
+        supportCard.classList.add('hidden');
+        return;
+      }
+
+      setStatus(dashStatus, 'Carregando dados...', null);
+      try {
+        const response = await fetch('/api/admin-dashboard', {
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
+        });
+        const data = await response.json();
+
+        if (!response.ok || !data.ok) {
+          throw new Error(data.error || 'Falha ao carregar painel');
+        }
+
+        loginCard.classList.add('hidden');
+        dashboardCard.classList.remove('hidden');
+        usersCard.classList.remove('hidden');
+        supportCard.classList.remove('hidden');
+
+        adminWho.textContent = `Admin autenticado: ${data.admin_email || '-'}`;
+        renderStats(data.stats || {});
+        renderUsers(data.users || []);
+        renderSupport(data.support_messages || []);
+        setStatus(dashStatus, 'Painel atualizado.', 'ok');
+      } catch (error) {
+        clearToken();
+        loginCard.classList.remove('hidden');
+        dashboardCard.classList.add('hidden');
+        usersCard.classList.add('hidden');
+        supportCard.classList.add('hidden');
+        setStatus(loginStatus, error.message || 'Sessao expirada.', 'err');
+      }
+    }
+
+    loginBtn.addEventListener('click', () => {
+      void doLogin();
+    });
+
+    adminPassword.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter') {
+        event.preventDefault();
+        void doLogin();
+      }
+    });
+
+    refreshBtn.addEventListener('click', () => {
+      void loadDashboard();
+    });
+
+    logoutBtn.addEventListener('click', () => {
+      clearToken();
+      loginCard.classList.remove('hidden');
+      dashboardCard.classList.add('hidden');
+      usersCard.classList.add('hidden');
+      supportCard.classList.add('hidden');
+      setStatus(loginStatus, 'Sessao encerrada.', null);
+    });
+
+    void loadDashboard();
+  </script>
+</body>
+</html>
