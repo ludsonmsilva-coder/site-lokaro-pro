@@ -1,8 +1,16 @@
 import crypto from 'node:crypto';
 
 function getSupabaseConfig() {
-  const supabaseUrl = process.env.SUPABASE_URL;
-  const serviceRole = process.env.SUPABASE_SERVICE_ROLE_KEY;
+  const supabaseUrl =
+    process.env.SUPABASE_URL ||
+    process.env.NEXT_PUBLIC_SUPABASE_URL ||
+    process.env.VITE_SUPABASE_URL ||
+    process.env.EXPO_PUBLIC_SUPABASE_URL;
+
+  const serviceRole =
+    process.env.SUPABASE_SERVICE_ROLE_KEY ||
+    process.env.SUPABASE_SERVICE_ROLE ||
+    process.env.SUPABASE_SERVICE_KEY;
 
   return {
     supabaseUrl,
@@ -97,7 +105,8 @@ export default async function handler(req, res) {
       return res.status(200).json({
         ok: true,
         admin_email: payload.email,
-        warning: 'Configure SUPABASE_URL e SUPABASE_SERVICE_ROLE_KEY no deploy para ver os dados.',
+        warning:
+          'Configure SUPABASE_URL (ou NEXT_PUBLIC_SUPABASE_URL/VITE_SUPABASE_URL) e SUPABASE_SERVICE_ROLE_KEY (ou SUPABASE_SERVICE_ROLE) no deploy para ver os dados.',
         stats: {
           total_users: 0,
           total_members: 0,
