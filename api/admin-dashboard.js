@@ -112,7 +112,6 @@ export default async function handler(req, res) {
         stats: {
           total_users: 0,
           total_members: 0,
-          total_billing_records: 0,
           total_support_messages: 0
         },
         users: [],
@@ -120,14 +119,12 @@ export default async function handler(req, res) {
       });
     }
 
-    const [membersRes, billingRes, supportRes] = await Promise.all([
+    const [membersRes, supportRes] = await Promise.all([
       supabaseRequest('members?select=email,status,joined_at&order=joined_at.desc&limit=500'),
-      supabaseRequest('billing_access?select=email,plan,status,updated_at,cancelled_at&order=updated_at.desc&limit=500'),
       supabaseRequest('support_requests?select=id,email,message,status,source_page,created_at,replied_at&order=created_at.desc&limit=500')
     ]);
 
     const members = membersRes.data || [];
-    const billingAccess = billingRes.data || [];
     const supportMessages = supportRes.data || [];
 
     const emailsMap = new Map();
@@ -138,33 +135,11 @@ export default async function handler(req, res) {
       const prev = emailsMap.get(email) || {
         email,
         member_status: null,
-        billing_plan: null,
-        billing_status: null,
         support_messages_count: 0,
         last_seen_at: null
       };
       prev.member_status = row?.status || prev.member_status;
       const seen = asDate(row?.joined_at);
-      if (seen && (!prev.last_seen_at || seen > new Date(prev.last_seen_at))) {
-        prev.last_seen_at = seen.toISOString();
-      }
-      emailsMap.set(email, prev);
-    }
-
-    for (const row of billingAccess || []) {
-      const email = String(row?.email || '').trim().toLowerCase();
-      if (!email) continue;
-      const prev = emailsMap.get(email) || {
-        email,
-        member_status: null,
-        billing_plan: null,
-        billing_status: null,
-        support_messages_count: 0,
-        last_seen_at: null
-      };
-      prev.billing_plan = row?.plan || prev.billing_plan;
-      prev.billing_status = row?.status || prev.billing_status;
-      const seen = asDate(row?.updated_at) || asDate(row?.cancelled_at);
       if (seen && (!prev.last_seen_at || seen > new Date(prev.last_seen_at))) {
         prev.last_seen_at = seen.toISOString();
       }
@@ -177,8 +152,6 @@ export default async function handler(req, res) {
       const prev = emailsMap.get(email) || {
         email,
         member_status: null,
-        billing_plan: null,
-        billing_status: null,
         support_messages_count: 0,
         last_seen_at: null
       };
@@ -200,9 +173,6 @@ export default async function handler(req, res) {
     if (supportRes.missingTable) {
       warnings.push('Tabela public.support_requests ausente no Supabase. Execute supabase/support_requests.sql.');
     }
-    if (billingRes.missingTable) {
-      warnings.push('Tabela public.billing_access ausente no Supabase. Execute supabase/billing_access.sql.');
-    }
 
     return res.status(200).json({
       ok: true,
@@ -211,7 +181,6 @@ export default async function handler(req, res) {
       stats: {
         total_users: users.length,
         total_members: (members || []).length,
-        total_billing_records: (billingAccess || []).length,
         total_support_messages: (supportMessages || []).length
       },
       users,

@@ -111,8 +111,6 @@
             <tr>
               <th>Email</th>
               <th>Membro</th>
-              <th>Plano</th>
-              <th>Status billing</th>
               <th>Msgs suporte</th>
               <th>Ultima atividade</th>
             </tr>
@@ -223,7 +221,6 @@
       const items = [
         ['Total de emails unicos', stats.total_users],
         ['Membros cadastrados', stats.total_members],
-        ['Registros de billing', stats.total_billing_records],
         ['Mensagens de suporte', stats.total_support_messages]
       ];
       statsBox.innerHTML = items
@@ -233,7 +230,7 @@
 
     function renderUsers(users) {
       if (!Array.isArray(users) || !users.length) {
-        usersBody.innerHTML = '<tr><td colspan="6" class="mut">Nenhum email encontrado.</td></tr>';
+        usersBody.innerHTML = '<tr><td colspan="4" class="mut">Nenhum email encontrado.</td></tr>';
         return;
       }
 
@@ -242,8 +239,6 @@
           <tr>
             <td>${u.email || '-'}</td>
             <td>${u.member_status || '-'}</td>
-            <td>${u.billing_plan || '-'}</td>
-            <td>${billingPill(u.billing_status)}</td>
             <td>${u.support_messages_count || 0}</td>
             <td>${fmtDate(u.last_seen_at)}</td>
           </tr>
@@ -262,7 +257,7 @@
           <tr>
             <td>${r.id ?? '-'}</td>
             <td>${r.email || '-'}</td>
-            <td>${billingPill(r.status)}</td>
+            <td>${r.status || '-'}</td>
             <td>${r.source_page || '-'}</td>
             <td>${String(r.message || '').slice(0, 220)}</td>
             <td>${fmtDate(r.created_at)}</td>
