@@ -75,11 +75,13 @@ async function supabaseRequest(path) {
       text.includes('relation') ||
       text.includes('PGRST');
 
-    if (missingTable) return [];
+    if (missingTable) {
+      return { data: [], missingTable: true };
+    }
     throw new Error(`Erro no Supabase: ${response.status} ${text}`);
   }
 
-  return response.json();
+  return { data: await response.json(), missingTable: false };
 }
 
 function asDate(value) {
@@ -118,11 +120,15 @@ export default async function handler(req, res) {
       });
     }
 
-    const [members, billingAccess, supportMessages] = await Promise.all([
+    const [membersRes, billingRes, supportRes] = await Promise.all([
       supabaseRequest('members?select=email,status,joined_at&order=joined_at.desc&limit=500'),
       supabaseRequest('billing_access?select=email,plan,status,updated_at,cancelled_at&order=updated_at.desc&limit=500'),
       supabaseRequest('support_requests?select=id,email,message,status,source_page,created_at,replied_at&order=created_at.desc&limit=500')
     ]);
+
+    const members = membersRes.data || [];
+    const billingAccess = billingRes.data || [];
+    const supportMessages = supportRes.data || [];
 
     const emailsMap = new Map();
 
@@ -190,9 +196,18 @@ export default async function handler(req, res) {
       return bDate - aDate;
     });
 
+    const warnings = [];
+    if (supportRes.missingTable) {
+      warnings.push('Tabela public.support_requests ausente no Supabase. Execute supabase/support_requests.sql.');
+    }
+    if (billingRes.missingTable) {
+      warnings.push('Tabela public.billing_access ausente no Supabase. Execute supabase/billing_access.sql.');
+    }
+
     return res.status(200).json({
       ok: true,
       admin_email: payload.email,
+      warning: warnings.length ? warnings.join(' ') : null,
       stats: {
         total_users: users.length,
         total_members: (members || []).length,

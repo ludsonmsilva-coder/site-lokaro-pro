@@ -1924,7 +1924,11 @@ footer a{color:#AFC0FF}
         setStatus('Mensagem recebida. O suporte vai responder no seu e-mail.', true);
       } catch (error) {
         const msg = String(error?.message || '');
-        const missingConfig = msg.includes('SUPABASE_') || msg.includes('aliases equivalentes');
+        const missingConfig =
+          msg.includes('SUPABASE_') ||
+          msg.includes('aliases equivalentes') ||
+          msg.includes('PGRST205') ||
+          msg.includes('support_requests');
 
         if (missingConfig) {
           const subject = encodeURIComponent('Pedido de suporte - Lokaro');
