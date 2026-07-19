@@ -57,6 +57,17 @@ async function supabaseRequest(path, options) {
 
   if (!response.ok) {
     const text = await response.text();
+
+    const missingSupportTable =
+      response.status === 404 &&
+      (text.includes('PGRST205') || text.includes('support_requests'));
+
+    if (missingSupportTable) {
+      throw new Error(
+        'Tabela public.support_requests ausente no Supabase. Execute o SQL de supabase/support_requests.sql para as mensagens aparecerem no admin.'
+      );
+    }
+
     throw new Error(`Erro no Supabase: ${response.status} ${text}`);
   }
 
