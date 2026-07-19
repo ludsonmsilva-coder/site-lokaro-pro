@@ -1923,7 +1923,20 @@ footer a{color:#AFC0FF}
         updateCount();
         setStatus('Mensagem recebida. O suporte vai responder no seu e-mail.', true);
       } catch (error) {
-        setStatus(error.message || 'Nao foi possivel enviar agora.', false);
+        const msg = String(error?.message || '');
+        const missingConfig = msg.includes('SUPABASE_') || msg.includes('aliases equivalentes');
+
+        if (missingConfig) {
+          const subject = encodeURIComponent('Pedido de suporte - Lokaro');
+          const body = encodeURIComponent(
+            `E-mail: ${email}\n\nMensagem:\n${message}\n\nOrigem: /br`
+          );
+          window.location.href = `mailto:contato@lokaro.co?subject=${subject}&body=${body}`;
+          setStatus('Abrimos seu e-mail para envio direto ao suporte.', true);
+          return;
+        }
+
+        setStatus(msg || 'Nao foi possivel enviar agora.', false);
       } finally {
         submitBtn.disabled = false;
       }
