@@ -203,5 +203,5 @@ API usada pelo formulario/painel admin:
 No painel admin oculto da propria pagina, a equipe consegue:
 
 - listar perguntas enviadas
-- abrir resposta via `mailto:` para o email do cliente
+- visualizar email do cliente no painel e marcar como respondido
 - marcar ticket como `answered`

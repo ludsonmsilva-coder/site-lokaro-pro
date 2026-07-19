@@ -1625,7 +1625,7 @@ footer a{color:#AFC0FF}
 </section>
 
 <footer>
-  <p>© 2026 Lokaro · <a href="mailto:contato@lokaro.co">contato@lokaro.co</a> · Feito para quem administra espaços</p>
+  <p>© 2026 Lokaro · Feito para quem administra espaços</p>
 </footer>
 
 <script>
@@ -1881,7 +1881,7 @@ footer a{color:#AFC0FF}
           </div>
           <p>${escapeHtml(ticket.message || '')}</p>
           <div class="actions">
-            <a class="btn ghost" href="mailto:${encodeURIComponent(ticket.email || '')}?subject=Resposta%20do%20suporte%20Lokaro" target="_blank" rel="noopener">Responder por e-mail</a>
+            <span class="mut">Contato do cliente: ${escapeHtml(ticket.email || '-')}</span>
             ${ticket.status === 'answered' ? '' : '<button class="btn ghost mark-answered" type="button">Marcar como respondido</button>'}
           </div>
         </article>
